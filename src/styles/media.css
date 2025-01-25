@@ -123,6 +123,22 @@ html {
         width: 100%;
     }
 
+    .contacts-page .filters {
+        flex-direction: column;
+    }
+
+    .contacts-page .filters h1 {
+        order: 1;
+    }
+
+    .contacts-page .filters .filter-item {
+        order: 2;
+    }
+
+    body .contacts-page .select {
+        width: 100%;
+    }
+
 
     .add-service-page .filters {
         flex-direction: column;

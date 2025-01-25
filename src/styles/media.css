@@ -1,0 +1,162 @@
+html {
+    font-size: 16px;
+    /* Default font size (16px is typical for desktop) */
+}
+
+/* For medium-sized screens (tablets, etc.) */
+@media (max-width: 1024px) {
+    html {
+        font-size: 15px;
+        /* Reduce font size for tablets or medium-sized devices */
+    }
+
+    #about .container {
+        flex-direction: column;
+    }
+
+    #about .container .text .title {
+        text-align: center;
+    }
+
+    .banner img {
+        width: 500px;
+    }
+}
+
+/* For small screens (phones, etc.) */
+@media (max-width: 768px) {
+    html {
+        font-size: 14px;
+        /* Further reduce font size for mobile screens */
+    }
+
+    .container {
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    body .nav-bar .nav-list {
+        transform: scaleY(0);
+        transform-origin: top;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background-color: white;
+        width: 100%;
+        /* Full width for dropdown */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        z-index: 1000;
+        transition: 0.3s;
+    }
+
+    body .nav-bar .nav-list.active {
+        display: flex;
+        transform: scaleY(1);
+        /* Show menu when active */
+    }
+
+    .nav-bar .options button.menu-toggle {
+        display: block;
+        background: var(--primary-color);
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 15px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+
+    .banner {
+        height: 100vh;
+        text-align: center;
+    }
+
+    .banner {
+        flex-direction: column-reverse;
+
+    }
+
+    .banner h1 {
+        font-size: 2rem;
+    }
+
+    .banner p {
+        font-size: 1rem;
+    }
+
+    .banner a {
+        margin: 0 auto;
+    }
+
+    #services-section .grid-services {
+        padding: 0;
+    }
+
+    #services-section .service-card {
+        min-width: 100%;
+    }
+
+    #services-section .heading h1 {
+        font-size: 2rem;
+    }
+
+    #services-section .arrow {
+        width: 35px;
+        height: 35px;
+    }
+
+    .service-page .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .service-page .container p {
+        width: 100%;
+    }
+
+    .service-page .container>div {
+        flex-basis: 100%;
+        width: 100%;
+    }
+
+
+    .add-service-page .filters {
+        flex-direction: column;
+    }
+
+    .contacts-page .service-card {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    footer .footer-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    footer .footer-section {
+        margin-bottom: 0;
+    }
+
+
+    footer .footer-grid {
+        gap: 1.5rem;
+    }
+
+
+
+    footer .footer-brand {
+        font-size: 1.25rem;
+    }
+}
+
+/* For very small screens (portrait phones) */
+@media (max-width: 480px) {
+    html {
+        font-size: 13px;
+        /* Even smaller font size for very small screens */
+    }
+}

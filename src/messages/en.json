@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "title": "Bayt Services - Trusted Services Across Saudi Arabia",
+    "description": "Discover top service providers in your city. Diverse and trusted services across Saudi Arabia"
+  },
+  "nav": {
+    "home": "Home",
+    "cities": "Cities",
+    "services": "Services",
+    "about": "About Us",
+    "addService": "Add Service"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "noResults": "No results found",
+    "contactUs": "Contact Us"
+  },
+  "home": {
+    "servicesTitle": "Our Services",
+    "servicesDescription": "Choose from our wide range of services",
+    "bannerTitle": "Welcome to Bayt Services",
+    "bannerSubtitle": "One place at your service",
+    "serviceBtn": "Our Services",
+    "allServices": "All Services"
+  },
+  "services": {
+    "contactsTitle": "All Services",
+    "selectCity": "Select City",
+    "selectService": "Select Service",
+    "allCities": "All Cities",
+    "allServices": "All Services",
+    "description": "Service Description",
+    "whatsapp": "WhatsApp",
+    "call": "Call Us",
+    "noResults": "No results found",
+    "backBtn": "All Services",
+    "subMsg": "Know More About Us"
+  },
+  "addService": {
+    "title": "Add New Service",
+    "city": "City",
+    "service": "Service",
+    "selectCity": "Select City",
+    "selectService": "Select Service",
+    "checkAvailability": "Check Availability",
+    "serviceTaken": "Service Taken",
+    "serviceAlreadyTaken": "This service is already taken.",
+    "addNewService": "Add New Service",
+    "serviceAvailable": "This service is available to add.",
+    "addContact": "Contact Us to add your service",
+    "fetchError": "An error occurred while fetching data.",
+    "requiredFields": "Please select a city and service.",
+    "loading": "Searching for services...",
+    "defaultMessage": "Please select a city and service to check availability"
+  },
+  "about": {
+    "aboutUs": "About Us",
+    "aboutText": "Welcome to Bayt Services, the leading platform for home services in Saudi Arabia. We are here to simplify your life by providing a comprehensive solution that meets all your home needs with ease and professionalism. From small tasks to major projects, our platform connects you with trusted professionals who deliver high-quality services quickly and efficiently.\n\nOur goal is to ensure that every home in the Kingdom, across all regions and cities, has access to reliable services that meet your expectations. We strive to be the first choice for anyone looking to improve, maintain, or repair their home. Through our user-friendly platform, you can access a network of skilled experts offering services that stand out for their quality and precision.\n\nAt Bayt Services, we believe that a comfortable home is the key to a happy life. That’s why we work hard to be your preferred destination for keeping your home in top shape. With our extensive network of professionals and commitment to excellence, we promise an exceptional experience that meets your needs and exceeds your expectations. Your comfort is our priority, and with our services, you can achieve the home of your dreams with ease."
+  },
+  "footer": {
+    "logoAlt": "Bayt Services Logo",
+    "aboutText": "Bayt Services is the ultimate platform connecting you with trusted professionals to meet all your home needs across Saudi Arabia. We provide high-quality services with speed and professionalism in all regions and cities.",
+    "quickLinks": "Quick Links",
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "contactUs": "Contact Us",
+    "address": "Riyadh, Saudi Arabia",
+    "followUs": "Follow Us",
+    "allRightsReserved": "All rights reserved",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location"
+  }
+}

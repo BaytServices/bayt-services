@@ -1,0 +1,23 @@
+# Node.js dependencies
+/node_modules/
+
+# Build output
+/.next/
+/.vercel/
+# Environment variables
+/.env
+/.env.local
+/.env.development
+/.env.production
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS-specific files (e.g., macOS .DS_Store)
+.DS_Store
+
+# IDE or Editor files (e.g., VS Code settings)
+.vscode/
+.idea/

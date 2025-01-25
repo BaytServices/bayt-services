@@ -1,0 +1,1328 @@
+/* src/styles/globals.css */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap');
+
+:root {
+  --primary-color: #28bcd6;
+  /* Define your primary color */
+
+  --hover-color: #1e95aa;
+  /* Hover effect color */
+  --background-color: #fff;
+  --text-color: #333;
+
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'IBM Plex Sans Arabic', system-ui, -apple-system, sans-serif;
+  color: var(--text-color);
+  background-color: #fff;
+  overflow-x: hidden;
+}
+
+[dir="rtl"] {
+  font-family: 'IBM Plex Sans Arabic', system-ui, -apple-system, sans-serif;
+}
+
+[dir="ltr"] {
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.lang-btn {
+  all: unset;
+}
+
+.container {
+  width: 90%;
+
+  margin: 0 auto;
+}
+
+
+
+.nav-bar {
+  padding: 10px 5%;
+  /* Consistent padding */
+  background-color: var(--background-color);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  position: sticky;
+  /* Stays at the top while scrolling */
+  top: 0;
+  z-index: 10000;
+  /* Ensure it's above other content */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-bar .logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-bar .logo img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  /* Smooth hover effect */
+}
+
+.nav-bar .logo img:hover {
+  transform: scale(1.1);
+  /* Slight zoom on hover */
+}
+
+.nav-bar .logo a {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  text-decoration: none;
+  /* Remove underline */
+  transition: color 0.3s ease;
+}
+
+.nav-bar .logo a:hover {
+  color: var(--hover-color);
+  /* Change color on hover */
+}
+
+.nav-bar .nav-list {
+  display: flex;
+  gap: 1.5rem;
+  /* Even spacing */
+}
+
+.nav-bar .nav-list a {
+  position: relative;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-color);
+  text-decoration: none;
+  margin: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-bar .nav-list a::before {
+  position: absolute;
+  content: "";
+  bottom: -10px;
+  left: 0;
+  height: 1px;
+  width: 0;
+  background-color: var(--primary-color);
+  transition: 0.3s;
+}
+
+.nav-bar .nav-list a:hover {
+  color: var(--primary-color);
+}
+
+.nav-bar .nav-list a:hover::before {
+  width: 100%;
+}
+
+.nav-bar .options {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-bar .options * {
+  display: flex;
+  align-items: center;
+}
+
+.nav-bar .options button {
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-bar .options button.menu-toggle {
+  display: none;
+}
+
+.nav-bar .options a {
+  background-color: var(--background-color);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.nav-bar .options a:hover,
+.nav-bar .options button:hover {
+  background-color: var(--hover-color);
+  color: var(--background-color);
+}
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  /* Adjust height as needed */
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
+  overflow: hidden;
+  color: #fff;
+  background: linear-gradient(180deg, #28bcd6 0%, #1e95aa 100%);
+  /* Text color */
+  justify-content: space-between;
+}
+
+
+.banner img {
+  position: relative;
+  width: 600px;
+  object-fit: contain;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.banner .text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: auto 0;
+  position: relative;
+  z-index: 2;
+}
+
+.banner a {
+  padding: 8px 10px;
+  background-color: var(--background-color);
+  width: fit-content;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  border: 1px solid var(--primary-color);
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: var(--shadow-color);
+  transition: 0.3s;
+}
+
+.banner a:hover {
+  background-color: transparent;
+  color: var(--background-color);
+  border-color: var(--background-color);
+}
+
+.banner h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0;
+  z-index: 2;
+  /* Ensure text is above the image */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  /* Subtle shadow for better contrast */
+}
+
+.banner p {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  z-index: 2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+
+section {
+  padding: 60px 0;
+}
+
+section#services-section .heading {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+section#services-section .heading h1 {
+  font-size: 2rem;
+}
+
+section#services-section .heading p {
+  font-size: 1.5rem;
+}
+
+#services-section {
+  padding: 40px 20px;
+  background-color: var(--background-color);
+  position: relative;
+}
+
+#services-section .heading {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#services-section .heading h1 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+#services-section .heading p {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+
+#services-section .grid-services {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  padding: 1rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  width: 95%;
+  margin: 0 auto;
+}
+
+
+
+#services-section .grid-services::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera */
+}
+
+#services-section .service-card {
+  min-width: 280px;
+  height: 200px;
+  position: relative;
+  cursor: pointer;
+  scroll-snap-align: start;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px var(--shadow-color);
+  transition: transform 0.3s ease;
+}
+
+#services-section .service-card:hover {
+  transform: scale(1.02);
+}
+
+#services-section .service-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#services-section .service-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#services-section .service-content::before,
+#services-section .service-content::after {
+  content: '';
+  position: absolute;
+  width: 150%;
+  height: 100%;
+  background-color: #0a778a4d;
+  transition: transform 0.5s ease;
+  z-index: -1;
+}
+
+#services-section .service-content::before {
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+}
+
+#services-section .service-content::after {
+  top: 0;
+  right: 0;
+  transform-origin: top right;
+}
+
+#services-section .service-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  color: white;
+  transition: transform 0.5s ease;
+  background: transparent;
+  z-index: 1;
+}
+
+#services-section .service-card:hover .service-content::before {
+  transform: rotate(-25deg) translateX(-100%);
+}
+
+#services-section .service-card:hover .service-content::after {
+  transform: rotate(25deg) translateX(100%);
+}
+
+/* RTL Support */
+[dir="rtl"] #services-section .service-card:hover .service-content::before {
+  transform: rotate(25deg) translateX(100%);
+}
+
+[dir="rtl"] #services-section .service-card:hover .service-content::after {
+  transform: rotate(-25deg) translateX(-100%);
+}
+
+/* Add fade out effect to text */
+#services-section .service-card:hover .service-content {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#services-section .service-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+#services-section .service-content p {
+  font-size: 1rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+#services-section .carousel-container {
+  position: relative;
+  height: 240px;
+}
+
+/* Arrow navigation */
+#services-section .arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: background-color 0.3s ease;
+}
+
+#services-section .arrow:hover {
+  background: var(--hover-color);
+}
+
+#services-section .arrow-left {
+  left: -20px;
+}
+
+#services-section .arrow-right {
+  right: -20px;
+}
+
+#services-section .btn {
+  margin: 0 auto;
+  text-align: center;
+  width: fit-content;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border: 1px solid var(--primary-color);
+  transition: 0.3s;
+}
+
+#services-section .btn:hover {
+  background-color: var(--background-color);
+  color: var(--primary-color);
+}
+
+/* Responsive adjustments */
+
+/* General Page Styles */
+.contacts-page {
+  padding: 40px 0;
+}
+
+
+.contacts-page .grid-services p.no-result {
+  margin-inline: 30px;
+}
+
+.contacts-page h1 {
+  text-align: center;
+  margin: 0;
+}
+
+.contacts-page .filters {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin: 30px 0;
+  background-color: rgba(249, 250, 251);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+/* General styling for the select element inside contacts-page */
+.contacts-page .select {
+  appearance: none;
+  /* Remove default dropdown arrow */
+  -webkit-appearance: none;
+  /* For Safari */
+  -moz-appearance: none;
+  /* For Firefox */
+  width: 280px;
+  /* Make the select box responsive */
+  font-size: 14px;
+  /* Set a decent font size */
+  border-radius: 8px;
+  /* Rounded corners */
+  border: 1px solid #ccc;
+  /* Light border */
+  background-color: #fff;
+  /* White background */
+  color: #333;
+  /* Text color */
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  /* Smooth transition for border and focus */
+}
+
+
+/* Focus state */
+.contacts-page .select:focus {
+  outline: none;
+  /* Remove default outline */
+  border-color: var(--primary-color);
+  /* Blue border on focus */
+  box-shadow: 0 0 0 1px rgba(0, 123, 255, 0.25);
+  /* Subtle box-shadow */
+}
+
+.contacts-page .select::-ms-expand {
+  display: none;
+  /* Remove arrow in IE/Edge */
+}
+
+
+/* Styling for the dropdown arrow */
+
+
+/* Styling the options */
+.contacts-page .select option {
+  padding: 10px 20px;
+  /* Padding for options */
+  background-color: #fff;
+  color: #333;
+  border: none;
+  /* Remove borders from options */
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect on options */
+.contacts-page .select option:hover {
+  background-color: #f1f1f1;
+  /* Change background color on hover */
+}
+
+/* Active/selected option styling */
+.contacts-page .select option:checked {
+  background-color: var(--hover-color);
+  color: white;
+  /* White text when selected */
+}
+
+
+.contacts-page .grid-services {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 20px 0;
+  background-color: rgba(249, 250, 251);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  min-height: 100vh;
+  border-radius: 12px;
+}
+
+.contacts-page .pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.contacts-page .page-button {
+  padding: 8px 15px;
+  border: 1px solid #e1e1e1;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.contacts-page .page-button.active {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.contacts-page .page-button:hover:not(.active) {
+  background: #f5f5f5;
+}
+
+/* Service Card Styles */
+.contacts-page .service-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: var(--background-color);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+  padding: 20px;
+  max-width: 350px;
+  margin: 20px;
+  border: 1px solid #eaeaea;
+  height: fit-content;
+}
+
+.contacts-page .service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.contacts-page .service-card:active {
+  transform: translateY(2px);
+}
+
+/* Service Card Image Styles */
+.contacts-page .service-image {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.contacts-page .service-image img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s ease;
+}
+
+.contacts-page .service-card:hover .service-image img {
+  transform: scale(1.1);
+}
+
+.contacts-page .image-container {
+  position: relative;
+  padding-top: 56.25%;
+  overflow: hidden;
+}
+
+.contacts-page .service-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Service Card Content Styles */
+.contacts-page .service-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.contacts-page .service-content h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.contacts-page .service-content p {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.contacts-page .service-card:hover .service-content h3 {
+  color: #007BFF;
+}
+
+.contacts-page .service-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+
+}
+
+.contacts-page .service-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* Badges and Buttons */
+.contacts-page .location-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #f0f7ff;
+  height: 40px;
+  color: #2d7dd2;
+  padding: 5px 10px;
+  width: 100%;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.contacts-page .location-badge i {
+  margin-right: 5px;
+}
+
+.contacts-page .service-type {
+  width: 100%;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff3e6;
+  color: #ff9933;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+}
+
+.contacts-page .contact-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.contacts-page .contact-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  gap: 10px;
+}
+
+.contacts-page .whatsapp-button {
+  background: #25d366;
+  color: white;
+}
+
+.contacts-page .call-button {
+  background: #007bff;
+  color: white;
+}
+
+.contacts-page .contact-button i {
+
+  font-size: 1.1rem;
+}
+
+.contacts-page .whatsapp-button:hover {
+  background: #1faa4b;
+}
+
+.contacts-page .call-button:hover {
+  background: #0056b3;
+}
+
+
+/* Spinner styles */
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--background-color);
+  z-index: 999;
+}
+
+.spinner-container {
+  width: 100%;
+  height: 100%;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  /* Light grey background */
+  border-top: 4px solid #3498db;
+  /* Blue color for spinner */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* To center the spinner in the grid */
+.grid-services {
+  position: relative;
+}
+
+.grid-services .spinner-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+#about .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#about .container .text {
+  flex-basis: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#about .container .text .title {
+  font-size: 1.8rem;
+}
+
+#about .container .text p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--text-color);
+
+  text-align: justify;
+}
+
+#about .container .image {
+  flex-basis: 50%;
+}
+
+#about .container .image img {
+  width: 100%;
+  height: 545px;
+  object-fit: contain;
+}
+
+.service-page {
+  padding: 0;
+}
+
+.service-page .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px auto;
+}
+
+.swiper-slide {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.service-page .image-section {
+  margin-bottom: 20px;
+  flex-basis: 50%;
+  height: 100%;
+  width: 50%;
+}
+
+.service-page .single-image {
+  text-align: center;
+  height: 100%;
+}
+
+.service-page .single-image-element {
+  max-width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.service-page .image-slider {
+  height: 100%;
+}
+
+.service-page .image-slider img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.service-page .details-section {
+  flex-basis: 50%;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  margin-bottom: auto;
+}
+
+.service-page .service-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.service-page .service-location,
+.service-page .service-category,
+.service-page .service-phone {
+  font-size: 1.2rem;
+  color: #555;
+  margin: 10px 0;
+}
+
+.service-page .service-location i,
+.service-page .service-category i,
+.service-page .service-phone i {
+  margin-right: 8px;
+  color: #007bff;
+}
+
+.service-page .service-description h2 {
+  font-size: 1.5em;
+  margin-top: 20px;
+}
+
+.service-page .service-description p {
+  margin: 10px 0;
+  font-size: 1.2rem;
+  color: #333;
+  text-align: justify;
+  width: 80%;
+}
+
+.service-page .contact-actions {
+  margin-top: auto;
+  display: flex;
+  gap: 10px;
+}
+
+.service-page .whatsapp-button,
+.service-page .call-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+}
+
+.service-page .whatsapp-button:hover,
+.service-page .call-button:hover {
+  filter: brightness(0.7);
+}
+
+.service-page .whatsapp-button {
+  background-color: #25d366;
+}
+
+.service-page .call-button {
+  background-color: #007bff;
+}
+
+.service-page .whatsapp-button i,
+.service-page .call-button i {
+  margin-right: 8px;
+}
+
+
+.add-service-page .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.add-service-page .page-title {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.add-service-page .service-form {
+  background-color: #f9f9f9;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.add-service-page .filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.add-service-page .filter-item {
+  flex: 1;
+}
+
+.add-service-page .submit-button{
+  text-align: center;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-service-page .submit-button:hover {
+  background-color: var(--hover-color);
+}
+
+.add-service-page .submit-button:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+.add-service-page .error-message {
+  color: #dc3545;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.add-service-page .contact-card {
+  margin-top: 2rem;
+  background-color: #f4f4f4;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 6px var(--shadow-color);
+  height: 250px;
+}
+
+.add-service-page .card-title {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.add-service-page .card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.add-service-page .error-icon {
+  color: #dc3545;
+  font-size: 3rem;
+}
+
+.add-service-page .success-icon {
+  color: #28a745;
+  font-size: 3rem;
+}
+
+.add-service-page .add-contact-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.add-service-page .add-contact-link:hover {
+  background-color: var(--hover-color);
+}
+
+.add-service-page .contact-buttons {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.add-service-page .contact-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.add-service-page .whatsapp-button {
+  background-color: #25d366;
+  color: white;
+}
+
+.add-service-page .whatsapp-button:hover {
+  background-color: #128c7e;
+}
+
+.loading-state, .default-state {
+  text-align: center;
+  padding: 2rem;
+  margin: 2rem 0;
+  background: #f8f9fa;
+  border-radius: 8px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-icon, .loading-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.loading-icon {
+  color: #007bff;
+}
+
+.info-icon {
+  color: #6c757d;
+}
+
+
+footer.footer {
+  background-color: #eee;
+  color: var(--text-color);
+  box-shadow: 0 -4px 6px var(--shadow-color);
+}
+
+footer .footer-container {
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+footer .footer-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+footer .footer-section {
+  margin-bottom: 2rem;
+}
+
+footer .footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+footer .footer-logo img {
+  width: 80px;
+  height: 60px;
+}
+
+footer .footer-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer .footer-brand:hover {
+  color: var(--hover-color);
+}
+
+footer .footer-about {
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+footer .footer-heading {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+footer .footer-links li,
+footer .footer-contact li {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+
+footer .footer-contact li {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+
+footer .footer-contact i {
+  color: var(--primary-color);
+  width: 20px;
+  text-align: center;
+}
+
+footer .footer-links a,
+footer .footer-contact span {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: inline-block;
+  position: relative;
+  font-size: 1.2rem;
+
+}
+
+footer .footer-links a::after,
+footer .footer-contact span::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+footer .footer-links a:hover::after,
+footer .footer-contact span:hover::after {
+  width: 100%;
+}
+
+footer .footer-links a:hover,
+footer .footer-contact span:hover {
+  color: var(--primary-color);
+}
+
+footer .footer-social {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+footer .footer-social a {
+  color: var(--background-color);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  padding: 0.8rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  width: 40px;
+  height: 40px;
+}
+
+footer .footer-social a:hover {
+  color: var(--primary-color);
+  transform: translateY(-3px);
+  background-color: var(--background-color)
+}
+
+footer .footer-copyright {
+  margin-top: auto;
+  border-top: 1px solid var(--shadow-color);
+  text-align: center;
+  padding: 10px;
+}
+
+
+
+footer[dir="rtl"] .footer-links a::after,
+footer[dir="rtl"] .footer-contact a::after {
+  left: auto;
+  right: 0;
+}

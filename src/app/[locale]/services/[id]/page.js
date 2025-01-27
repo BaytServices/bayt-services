@@ -17,20 +17,21 @@ export async function generateMetadata({ params: { locale, id } }) {
 
     return generateSeoMetadata({
         title: {
-            ar: `${contact.name.ar} - ${contact.service.name.ar} في ${contact.city.name.ar}`,
-            en: `${contact.name.en} - ${contact.service.name.en} in ${contact.city.name.en}`,
+            ar: `${contact.name.ar} - ${contact.service.name.ar} في ${contact.city.name.ar} | خدمات مميزة`,
+            en: `${contact.name.en} - ${contact.service.name.en} in ${contact.city.name.en} | Top Quality Services`,
         },
         description: {
-            ar: `${contact.service.description.ar} في ${contact.city.name.ar}. تواصل معنا عبر الواتساب أو الهاتف للحصول على خدمة مميزة`,
-            en: `${contact.service.description.en} in ${contact.city.name.en}. Contact us via WhatsApp or phone for exceptional service`,
+            ar: `احصل على ${contact.service.name.ar} المميزة في ${contact.city.name.ar}. نقدم خدمات عالية الجودة تلبي احتياجاتك. تواصل معنا عبر الواتساب أو الهاتف الآن.`,
+            en: `Get premium ${contact.service.name.en} in ${contact.city.name.en}. We offer high-quality services tailored to your needs. Contact us via WhatsApp or phone today.`,
         },
         keywords: {
-            ar: `${contact.service.name.ar}, ${contact.city.name.ar}, شركة خدمات, خدمات منزلية, ${contact.name.ar}`,
-            en: `${contact.service.name.en}, ${contact.city.name.en}, service company, home services, ${contact.name.en}`,
+            ar: `${contact.service.name.ar}, ${contact.city.name.ar}, خدمات منزلية, أفضل شركة خدمات, ${contact.name.ar}, خدمات ${contact.service.name.ar} في ${contact.city.name.ar}`,
+            en: `${contact.service.name.en}, ${contact.city.name.en}, home services, best service company, ${contact.name.en}, ${contact.service.name.en} in ${contact.city.name.en}`,
         },
         path: `/${locale}/services/${id}`,
         locale,
     });
+
 }
 
 export default async function ContactPage({ params: { locale, id } }) {

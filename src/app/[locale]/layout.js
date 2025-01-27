@@ -14,8 +14,9 @@ export async function generateMetadata({ params: { locale } }) {
       en: 'Bayt Services - Trusted Services Across Saudi Arabia'
     },
     description: {
-      ar: 'اكتشف أفضل مزودي الخدمات في مدينتك. خدمات متنوعة وموثوقة في جميع أنحاء المملكة العربية السعودية',
-      en: 'Discover top service providers in your city. Diverse and trusted services across Saudi Arabia'
+      ar: "اكتشف مزودي خدمات المنازل الموثوقين في مدينتك. نوفر مجموعة واسعة من الخدمات الموثوقة في جميع أنحاء المملكة العربية السعودية لتلبية جميع احتياجاتك المنزلية والحياتية.",
+      en: "Discover trusted home service providers in your city. Offering a wide range of reliable services across Saudi Arabia, we connect you with professionals for all your home and lifestyle needs."
+
     },
     keywords: {
       ar: 'خدمات منزلية, خدمات تنظيف, صيانة منازل, نقل اثاث, خدمات السعودية',
@@ -31,7 +32,7 @@ export default function RootLayout({ children, params: { locale } }) {
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <body>
         <Navbar locale={locale} />
-    
+
         <main >
           {children}
         </main>

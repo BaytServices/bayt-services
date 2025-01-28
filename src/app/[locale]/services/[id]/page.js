@@ -5,6 +5,7 @@ import enMessages from '../../../../messages/en.json';
 import { generateSeoMetadata } from '../../../../lib/seo';
 import ImageSlider from '../../../../components/shared/ImageSlider';
 import Banner from '../../../../components/shared/Banner';
+
 export async function generateMetadata({ params: { locale, id } }) {
     const contact = await fetch(`https://bayt-admin.vercel.app/api/service-contacts/${id}`)
         .then((res) => res.json())
@@ -13,9 +14,13 @@ export async function generateMetadata({ params: { locale, id } }) {
             return null;
         });
 
-    if (!contact) return {};
+    if (!contact) return {
+        title: 'Page Not Found',
+        description: 'The requested service page was not found.',
+        robots: 'noindex, nofollow',
+    };
 
-    return generateSeoMetadata({
+    const meta = generateSeoMetadata({
         title: {
             ar: `${contact.name.ar} - ${contact.service.name.ar} في ${contact.city.name.ar} | خدمات مميزة`,
             en: `${contact.name.en} - ${contact.service.name.en} in ${contact.city.name.en} | Top Quality Services`,
@@ -32,6 +37,22 @@ export async function generateMetadata({ params: { locale, id } }) {
         locale,
     });
 
+    // Add Open Graph & Twitter Metadata
+    return {
+        ...meta,
+        openGraph: {
+            title: meta.title,
+            description: meta.description,
+            url: `https://your-platform-domain.com/${locale}/services/${id}`,
+            images: contact.images?.length > 0 ? contact.images : [contact.service.image],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: meta.title,
+            description: meta.description,
+            images: contact.images?.length > 0 ? contact.images[0] : contact.service.image,
+        },
+    };
 }
 
 export default async function ContactPage({ params: { locale, id } }) {
@@ -39,8 +60,10 @@ export default async function ContactPage({ params: { locale, id } }) {
         .then((res) => res.json())
         .catch(() => null);
 
+    const messages = locale === 'ar' ? arMessages : enMessages;
+    const dir = locale === 'ar' ? 'rtl' : 'ltr';
+
     if (!contact) {
-        const messages = locale === 'ar' ? arMessages : enMessages;
         return (
             <div className="error-container">
                 <h2 className="error-title">{messages.errors.notFound}</h2>
@@ -49,22 +72,39 @@ export default async function ContactPage({ params: { locale, id } }) {
         );
     }
 
-    const messages = locale === 'ar' ? arMessages : enMessages;
-    const dir = locale === 'ar' ? 'rtl' : 'ltr';
-
     const images = contact.images?.length > 0 ? contact.images : [contact.service.image];
+
+    // Add Structured Data
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": contact.service.name[locale],
+        "provider": {
+            "@type": "Organization",
+            "name": contact.name[locale],
+            "areaServed": contact.city.name[locale],
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": contact.phone,
+                "contactType": "Customer Service",
+            },
+        },
+        "serviceArea": contact.city.name[locale],
+        "image": images,
+        "description": contact.service.description[locale],
+        "url": `https://your-platform-domain.com/${locale}/services/${contact._id}`,
+    };
 
     return (
         <section className="service-page" dir={dir}>
             <Banner
                 bgImage={false}
                 title={`${contact.service.name[locale]} ${locale === 'ar' ? 'في' : 'in'} ${contact.city.name[locale]}`}
-
                 subtitle={messages.services.subMsg}
                 servicesBtn={messages.services.backBtn}
-                locale={locale} />
+                locale={locale}
+            />
             <div className="container">
-
                 {/* Service Details Section */}
                 <div className="details-section">
                     <h1 className="service-title">{contact.name[locale]}</h1>
@@ -99,8 +139,12 @@ export default async function ContactPage({ params: { locale, id } }) {
                 <div className="image-section">
                     <ImageSlider images={images} />
                 </div>
-
             </div>
+
+            {/* JSON-LD for Structured Data */}
+            <script type="application/ld+json">
+                {JSON.stringify(structuredData)}
+            </script>
         </section>
     );
 }

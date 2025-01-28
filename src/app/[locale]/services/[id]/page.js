@@ -87,13 +87,22 @@ export default async function ContactPage({ params: { locale, id } }) {
                 "@type": "ContactPoint",
                 "telephone": contact.phone,
                 "contactType": "Customer Service",
+                "areaServed": contact.city.name[locale], // Add area served to improve local SEO
+                "availableLanguage": locale === 'ar' ? "Arabic" : "English"
             },
         },
         "serviceArea": contact.city.name[locale],
         "image": images,
         "description": contact.service.description[locale],
         "url": `https://your-platform-domain.com/${locale}/services/${contact._id}`,
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": contact.city.latitude, // If available, to improve local ranking
+            "longitude": contact.city.longitude
+        },
+        "priceRange": contact.service.priceRange || "Contact for Pricing", // Include price range if possible
     };
+    
 
     return (
         <section className="service-page" dir={dir}>

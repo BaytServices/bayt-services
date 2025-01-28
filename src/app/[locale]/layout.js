@@ -8,7 +8,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import Footer from '../../components/layout/Footer';
 
 export async function generateMetadata({ params: { locale } }) {
-  return generateSeoMetadata({
+  const metadata = generateSeoMetadata({
     title: {
       ar: 'بيت الخدمات - خدمات موثوقة في جميع مدن المملكة',
       en: 'Bayt Services - Trusted Services Across Saudi Arabia'
@@ -16,7 +16,6 @@ export async function generateMetadata({ params: { locale } }) {
     description: {
       ar: "اكتشف مزودي خدمات المنازل الموثوقين في مدينتك. نوفر مجموعة واسعة من الخدمات الموثوقة في جميع أنحاء المملكة العربية السعودية لتلبية جميع احتياجاتك المنزلية والحياتية.",
       en: "Discover trusted home service providers in your city. Offering a wide range of reliable services across Saudi Arabia, we connect you with professionals for all your home and lifestyle needs."
-
     },
     keywords: {
       ar: 'خدمات منزلية, خدمات تنظيف, صيانة منازل, نقل اثاث, خدمات السعودية',
@@ -24,7 +23,45 @@ export async function generateMetadata({ params: { locale } }) {
     },
     path: '/',
     locale
-  })
+  });
+
+  // Structured Data for Homepage
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": locale === 'ar' ? 'بيت الخدمات' : 'Bayt Services',
+    "url": "https://your-platform-domain.com/",
+    "description": locale === 'ar'
+      ? "اكتشف مزودي خدمات المنازل الموثوقين في مدينتك. نوفر مجموعة واسعة من الخدمات الموثوقة في جميع أنحاء المملكة العربية السعودية لتلبية جميع احتياجاتك المنزلية والحياتية."
+      : "Discover trusted home service providers in your city. Offering a wide range of reliable services across Saudi Arabia, we connect you with professionals for all your home and lifestyle needs.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://your-platform-domain.com/{search_term}",
+      "query-input": "required name=search_term"
+    },
+    "sameAs": [
+      "https://www.facebook.com/your-facebook-page",
+      "https://twitter.com/your-twitter-handle",
+      "https://www.instagram.com/your-instagram-handle"
+    ]
+  };
+
+  return {
+    ...metadata,
+    openGraph: {
+      title: metadata.title,
+      description: metadata.description,
+      url: `https://your-platform-domain.com/${locale}`,
+      images: ["/path/to/default-image.jpg"], // Add a default image for social sharing
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: metadata.title,
+      description: metadata.description,
+      images: ["/path/to/default-image.jpg"],
+    },
+    structuredData: JSON.stringify(structuredData)
+  };
 }
 
 export default function RootLayout({ children, params: { locale } }) {

@@ -1,12 +1,13 @@
 export const dynamic = 'force-dynamic';
 
-import arMessages from '../../../../messages/ar.json';
-import enMessages from '../../../../messages/en.json';
-import { generateSeoMetadata } from '../../../../lib/seo';
-import ImageSlider from '../../../../components/shared/ImageSlider';
-import Banner from '../../../../components/shared/Banner';
+import arMessages from '../../../../../../messages/ar.json';
+import enMessages from '../../../../../../messages/en.json';
+import { generateSeoMetadata } from '../../../../../../lib/seo';
+import ImageSlider from '../../../../../../components/shared/ImageSlider';
+import Banner from '../../../../../../components/shared/Banner';
 
-export async function generateMetadata({ params: { locale, id } }) {
+export async function generateMetadata({ params }) {
+    const { locale, id } = await params;
     const contact = await fetch(`https://bayt-admin.vercel.app/api/service-contacts/${id}`)
         .then((res) => res.json())
         .catch((error) => {
@@ -43,7 +44,7 @@ export async function generateMetadata({ params: { locale, id } }) {
         openGraph: {
             title: meta.title,
             description: meta.description,
-            url: `https://your-platform-domain.com/${locale}/services/${id}`,
+            url: `https://bayt-services.com/${locale}/services/${id}`,
             images: contact.images?.length > 0 ? contact.images : [contact.service.image],
         },
         twitter: {
@@ -94,7 +95,7 @@ export default async function ContactPage({ params: { locale, id } }) {
         "serviceArea": contact.city.name[locale],
         "image": images,
         "description": contact.service.description[locale],
-        "url": `https://your-platform-domain.com/${locale}/services/${contact._id}`,
+        "url": `https://bayt-services.com/${locale}/services/${contact._id}`,
         "geo": {
             "@type": "GeoCoordinates",
             "latitude": contact.city.latitude, // If available, to improve local ranking

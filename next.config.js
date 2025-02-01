@@ -1,12 +1,10 @@
 const nextConfig = {
   images: {
-    domains: [
-      'images.unsplash.com',
-      'example.com',
-      'another-domain.com',
-      'images.pexels.com',
-      'img.freepik.com',
-    ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**', // Allows all HTTPS domains
+      },]
   },
   reactStrictMode: true,
   devIndicators: {

@@ -10,9 +10,11 @@ import enMessages from '../../../messages/en.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faLocationDot, faTags } from '@fortawesome/free-solid-svg-icons';
 import Select from 'react-select';
-
-export default function ServicesPage({ params: { locale } }) {
+import { use } from 'react';
+export default function ServicesPage({ params }) {
+  const { locale } = use(params)
   const router = useRouter();
+
   const messages = locale === 'ar' ? arMessages : enMessages;
   const dir = locale === 'ar' ? 'rtl' : 'ltr';
 
@@ -98,10 +100,24 @@ export default function ServicesPage({ params: { locale } }) {
   };
 
   // Handle contact card click
-  const handleContactClick = (contactId) => {
-    // Store any necessary contact information in sessionStorage if needed
-    router.push(`/${locale}/services/${contactId}`);
+  // Handle contact card click
+
+  const toSlug = (text = "") => {
+    return text
+      .toString() // Ensure text is a string
+      .trim() // Remove leading/trailing whitespace
+      .replace(/\s+/g, '-') // Replace spaces with dashes
+      .replace(/[^\w\u0600-\u06FF-]/g, '') // Keep Arabic, alphanumeric, and dashes
+      .toLowerCase(); // Convert to lowercase
   };
+  
+
+  const handleContactClick = (contactId, cityName, serviceName) => {
+    const citySlug = toSlug(cityName[locale]);
+    const serviceSlug = toSlug(serviceName[locale]);
+    router.push(`/${locale}/services/${serviceSlug}/${citySlug}/${contactId}`);
+  };
+
 
   // Get display image for contact
   const getDisplayImage = (contact) => {
@@ -161,8 +177,15 @@ export default function ServicesPage({ params: { locale } }) {
             </div>
           ) : getPaginatedContacts().length > 0 ? (
             getPaginatedContacts().map((contact) => (
-              <div key={contact._id} className="service-card"
-                onClick={() => handleContactClick(contact._id)}
+              <div
+                key={contact._id}
+                className="service-card"
+                onClick={() => {
+                  console.log("City Name:", contact.city.name[locale]);
+                  console.log("Service Name:", contact.service.name[locale]);
+                  handleContactClick(contact._id, contact.city.name, contact.service.name);
+                }}
+                
               >
                 <div className="image-container">
                   <img

@@ -6,8 +6,10 @@ import "../../styles/globals.css"
 import "../../styles/media.css"
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Footer from '../../components/layout/Footer';
+import Logo from "../../assets/images/logo.png"
 
-export async function generateMetadata({ params: { locale } }) {
+export async function generateMetadata({ params }) {
+  const { locale } = await params
   const metadata = generateSeoMetadata({
     title: {
       ar: 'بيت الخدمات - خدمات موثوقة في جميع مدن المملكة',
@@ -30,15 +32,10 @@ export async function generateMetadata({ params: { locale } }) {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": locale === 'ar' ? 'بيت الخدمات' : 'Bayt Services',
-    "url": "https://your-platform-domain.com/",
+    "url": "https://bayt-services.com/",
     "description": locale === 'ar'
       ? "اكتشف مزودي خدمات المنازل الموثوقين في مدينتك. نوفر مجموعة واسعة من الخدمات الموثوقة في جميع أنحاء المملكة العربية السعودية لتلبية جميع احتياجاتك المنزلية والحياتية."
       : "Discover trusted home service providers in your city. Offering a wide range of reliable services across Saudi Arabia, we connect you with professionals for all your home and lifestyle needs.",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://your-platform-domain.com/{search_term}",
-      "query-input": "required name=search_term"
-    },
     "sameAs": [
       "https://www.facebook.com/your-facebook-page",
       "https://twitter.com/your-twitter-handle",
@@ -51,7 +48,7 @@ export async function generateMetadata({ params: { locale } }) {
     openGraph: {
       title: metadata.title,
       description: metadata.description,
-      url: `https://your-platform-domain.com/${locale}`,
+      url: `https://bayt-services.com/${locale}`,
       images: ["/path/to/default-image.jpg"], // Add a default image for social sharing
     },
     twitter: {
@@ -67,6 +64,10 @@ export async function generateMetadata({ params: { locale } }) {
 export default function RootLayout({ children, params: { locale } }) {
   return (
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+
+      </head>
       <body>
         <Navbar locale={locale} />
 

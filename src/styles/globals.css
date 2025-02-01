@@ -341,6 +341,7 @@ section#services-section .heading p {
   transition: transform 0.3s ease;
 }
 
+
 #services-section .service-card:hover {
   transform: scale(1.02);
 }
@@ -640,6 +641,18 @@ section#services-section .heading p {
   height: fit-content;
 }
 
+.contacts-page .service-card .stars{
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.contacts-page .service-card .stars i {
+  color: gold;
+}
+
 .contacts-page .service-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
@@ -891,6 +904,110 @@ section#services-section .heading p {
   height: 545px;
   object-fit: contain;
 }
+
+/* General Styles */
+#why-us {
+  padding: 50px 0;
+}
+
+#why-us .heading {
+  text-align: center;
+  margin: 0 auto;
+  width: fit-content;
+  margin-bottom: 30px;
+}
+
+#why-us .heading h1 {
+  font-size: 2.5rem;
+  color: #333;
+  font-weight: bold;
+}
+
+#why-us .faq {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+#why-us .faq-item {
+  width: 48%;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+#why-us .faq-item:hover {
+  transform: translateY(-10px);
+}
+
+#why-us .faq-item h3 {
+  font-size: 1.25rem;
+  color: #007BFF;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+#why-us .faq-item p {
+  font-size: 1rem;
+  color: #555;
+}
+
+#why-us .image {
+  margin-top: 40px;
+  text-align: center;
+}
+
+#why-us .image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  #why-us .faq-item {
+    width: 100%;
+  }
+
+  #why-us .heading h1 {
+    font-size: 2rem;
+  }
+
+  #why-us .faq-item h3 {
+    font-size: 1.1rem;
+  }
+
+  #why-us .faq-item p {
+    font-size: 0.95rem;
+  }
+}
+
+/* Arabic (RTL) specific styles */
+[dir="rtl"] #why-us .faq {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] #why-us .faq-item {
+  text-align: right;
+}
+
+[dir="rtl"] #why-us .faq-item h3 {
+  text-align: right;
+  padding-right: 10px;
+}
+
+[dir="rtl"] #why-us .faq-item p {
+  text-align: right;
+  padding-right: 10px;
+}
+
+[dir="rtl"] #why-us .heading h1 {
+  text-align: right;
+}
+
 
 .service-page {
   padding: 0;

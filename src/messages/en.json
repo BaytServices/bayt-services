@@ -23,7 +23,17 @@
     "bannerTitle": "Welcome to Bayt Services",
     "bannerSubtitle": "One place at your service",
     "serviceBtn": "Our Services",
-    "allServices": "All Services"
+    "allServices": "All Services",
+    "whyUsTitle": "Why Choose Us?",
+    "whyUsQ1": "What makes Bayt Services unique?",
+    "whyUsA1": "We are a multi-service platform that offers a wide variety of home services, including cleaning, maintenance, transport, and more, across all cities in Saudi Arabia. Our services are reliable, affordable, and professionally delivered.",
+    "whyUsQ2": "How do we ensure quality services?",
+    "whyUsA2": "We only work with trusted service providers and ensure all professionals meet our high standards. We carefully vet and monitor them for the best customer experience.",
+    "whyUsQ3": "Are the services affordable?",
+    "whyUsA3": "Yes, we offer competitive prices, ensuring that you receive the best value for your money without compromising on quality.",
+    "whyUsQ4": "How easy is it to use the platform?",
+    "whyUsA4": "Our platform is user-friendly, allowing you to book services easily with just a few clicks. We also offer support in both Arabic and English to cater to all users.",
+    "whyUsImageAlt": "A wide variety of services available across Saudi Arabia"
   },
   "services": {
     "contactsTitle": "All Services",

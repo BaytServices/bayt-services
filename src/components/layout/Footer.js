@@ -56,13 +56,13 @@ export default function Footer({ locale }) {
 
                                 <i className="fas fa-envelope"></i>
 
-                                <span>info@baytservices.com</span>
+                                <span>bayt.services.info@gmail.com</span>
                             </li>
                             <li>
 
                                 <i className="fas fa-phone"></i>
 
-                                <span> +123 456 7890</span>
+                                <span>0558749348</span>
                             </li>
                             <li>
 

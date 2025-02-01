@@ -9,26 +9,6 @@ import arMessages from '../../messages/ar.json';
 import enMessages from '../../messages/en.json';
 import BannerImg from "../../assets/images/handyman.png";
 import AboutImg from "../../assets/images/about.jpg"
-
-export async function generateMetadata({ params: { locale } }) {
-  return generateSeoMetadata({
-    title: {
-      ar: 'بيت الخدمات - دليلك الشامل للخدمات في المملكة العربية السعودية',
-      en: 'Bayt Services - Your Complete Guide to Services in Saudi Arabia'
-    },
-    description: {
-      ar: 'اكتشف أفضل مزودي الخدمات في جميع مدن المملكة. نقدم خدمات التنظيف، الصيانة، النقل، وأكثر من ذلك بكثير',
-      en: 'Discover top service providers across Saudi Arabia. We offer cleaning, maintenance, transport, and much more'
-    },
-    keywords: {
-      ar: 'خدمات منزلية, خدمات تنظيف, صيانة منازل, نقل اثاث, خدمات السعودية, شركات خدمات',
-      en: 'home services, cleaning services, home maintenance, furniture transport, Saudi services, service companies'
-    },
-    path: '/',
-    locale
-  });
-}
-
 export default async function Home({ params: { locale } }) {
   const messages = locale === 'ar' ? arMessages : enMessages;
   const dir = locale === 'ar' ? 'rtl' : 'ltr';
@@ -57,6 +37,34 @@ export default async function Home({ params: { locale } }) {
           </Link>
         </div>
       </section>
+
+      {/* New Why Us Section */}
+      <section id="why-us" dir={dir}>
+        <div className="container">
+          <div className="heading">
+            <h1>{messages.home.whyUsTitle}</h1>
+          </div>
+          <div className="faq">
+            <div className="faq-item">
+              <h3>{messages.home.whyUsQ1}</h3>
+              <p>{messages.home.whyUsA1}</p>
+            </div>
+            <div className="faq-item">
+              <h3>{messages.home.whyUsQ2}</h3>
+              <p>{messages.home.whyUsA2}</p>
+            </div>
+            <div className="faq-item">
+              <h3>{messages.home.whyUsQ3}</h3>
+              <p>{messages.home.whyUsA3}</p>
+            </div>
+            <div className="faq-item">
+              <h3>{messages.home.whyUsQ4}</h3>
+              <p>{messages.home.whyUsA4}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id='about'>
         <div className="container">
           <div className="text">

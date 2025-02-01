@@ -110,7 +110,7 @@ export default function ServicesPage({ params }) {
       .replace(/[^\w\u0600-\u06FF-]/g, '') // Keep Arabic, alphanumeric, and dashes
       .toLowerCase(); // Convert to lowercase
   };
-  
+
 
   const handleContactClick = (contactId, cityName, serviceName) => {
     const citySlug = toSlug(cityName[locale]);
@@ -185,7 +185,7 @@ export default function ServicesPage({ params }) {
                   console.log("Service Name:", contact.service.name[locale]);
                   handleContactClick(contact._id, contact.city.name, contact.service.name);
                 }}
-                
+
               >
                 <div className="image-container">
                   <img
@@ -205,6 +205,14 @@ export default function ServicesPage({ params }) {
                       <FontAwesomeIcon icon={faTags} />
                       {contact.service.name[locale]}
                     </span>
+                  </div>
+
+                  <div className='stars'>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
                   </div>
                   <div className="contact-buttons">
                     <a

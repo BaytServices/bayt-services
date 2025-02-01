@@ -172,7 +172,7 @@ export default function AddService({ params: { locale } }) {
                             </div>
                             <div className="contact-buttons">
                                 <a
-                                    href={`https://wa.me/`}
+                                    href={`https://wa.me/0558749348`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="contact-button whatsapp-button"

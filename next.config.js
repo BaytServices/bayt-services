@@ -4,7 +4,16 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: '**', // Allows all HTTPS domains
-      },]
+      },
+    ],
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/sitemap.xml',
+        destination: '/api/sitemap', // Maps /sitemap.xml to /api/sitemap
+      },
+    ];
   },
   reactStrictMode: true,
   devIndicators: {

@@ -1,15 +1,13 @@
 // app/sitemap.js
 
-const BASE_URL = 'https://bayt-services-xsdp.vercel.app'; // Updated to new base URL
+const BASE_URL = 'https://bayt-services-xsdp.vercel.app'; // Update to your app's URL
 
 async function fetchAllServiceContacts() {
     try {
         const response = await fetch('https://bayt-admin.vercel.app/api/service-contacts');
-
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-
         const data = await response.json();
         return data.contacts || [];
     } catch (error) {
@@ -27,7 +25,7 @@ export default async function sitemap() {
         
         return {
             url: `${BASE_URL}/ar/services/${serviceNameSlug}/${citySlug}/${contact._id}`,
-            lastModified: new Date(contact.updatedAt).toISOString(), // Ensure valid date format
+            lastModified: new Date(contact.updatedAt).toISOString(),
             changeFrequency: 'daily',
             priority: 0.9,
             alternates: {
@@ -42,13 +40,13 @@ export default async function sitemap() {
     const staticPages = [
         {
             url: BASE_URL,
-            lastModified: new Date().toISOString(), // Ensure valid date format
+            lastModified: new Date().toISOString(),
             changeFrequency: 'daily',
             priority: 1.0,
         },
         {
             url: `${BASE_URL}/services`,
-            lastModified: new Date().toISOString(), // Ensure valid date format
+            lastModified: new Date().toISOString(),
             changeFrequency: 'daily',
             priority: 0.8,
         },

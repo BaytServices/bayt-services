@@ -71,7 +71,7 @@ export default function RootLayout({ children, params: { locale } }) {
 
         <link rel="canonical" href="https://bayt-services.com/en" />
         <link rel="alternate" hreflang="ar" href="https://bayt-services.com/en" />
-        <meta name="google-site-verification" content="google0bd58f874b86fa83.html" />
+        <meta name="google-site-verification" content="sQJZlEnPUPHp84QFBQNNe6s-qqpQV8oFYtVA5TXq7iw" />
 
       </head>
       <body>

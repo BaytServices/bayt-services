@@ -1,6 +1,6 @@
 // app/sitemap.js
 
-const BASE_URL = 'https://bayt-services-xsdp.vercel.app'; // Update to your app's URL
+const BASE_URL = 'https://bayt-services.com'; // Update to your app's URL
 
 async function fetchAllServiceContacts() {
     try {

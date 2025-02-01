@@ -13,6 +13,7 @@ export default function robots() {
         allow: '/public/', // If you have a public section, allow it specifically for Googlebot
       },
     ],
-    sitemap: `${BASE_URL}/sitemap.xml`,
+    sitemap: `${BASE_URL}/ar/sitemap.xml`,
+    sitemap: `${BASE_URL}/en/sitemap.xml`,
   };
 }

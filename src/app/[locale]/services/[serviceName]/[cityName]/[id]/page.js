@@ -54,6 +54,82 @@ export async function generateMetadata({ params }) {
             images: contact.images?.length > 0 ? contact.images[0] : contact.service.image,
         },
     };
+
+}
+function generateKeywords(contact, locale) {
+    const cityName = contact.city.name[locale];
+    const serviceName = contact.service.name[locale];
+    const serviceDescription = contact.service.description[locale];
+
+    // Base keyword patterns (these are still dynamic and based on service name and city)
+    const baseKeywords = {
+        en: [
+            `${serviceName} in ${cityName}`,
+            `${serviceName} services in ${cityName}`,
+            `${serviceName} near me`,
+            `Best ${serviceName} in ${cityName}`,
+            `${serviceName} experts in ${cityName}`,
+            `Affordable ${serviceName} in ${cityName}`,
+            `Professional ${serviceName} in ${cityName}`,
+            `${serviceName} for your home in ${cityName}`,
+            `Reliable ${serviceName} in ${cityName}`,
+            `Top-rated ${serviceName} in ${cityName}`,
+            `${serviceName} services in Saudi Arabia`,
+            `${serviceName} experts`,
+            `${serviceName} providers in ${cityName}`,
+            `Get the best ${serviceName} in ${cityName}`,
+            `${serviceName} for home and office`,
+            `Experienced ${serviceName} in ${cityName}`,
+            `${serviceName} services that you can trust`,
+            `${serviceName} in Saudi Arabia`,
+            `Highly rated ${serviceName} in ${cityName}`,
+            `Best service for ${serviceName} in ${cityName}`
+        ],
+        ar: [
+            `${serviceName} في ${cityName}`,
+            `${serviceName} خدمات في ${cityName}`,
+            `أفضل ${serviceName} في ${cityName}`,
+            `${serviceName} الخبراء في ${cityName}`,
+            `خدمات ${serviceName} في ${cityName}`,
+            `خدمات ${serviceName} بأسعار معقولة في ${cityName}`,
+            `شركات ${serviceName} في ${cityName}`,
+            `نقل ${serviceName} في ${cityName}`,
+            `أفضل خدمات ${serviceName} في ${cityName}`,
+            `أفضل خبراء ${serviceName} في ${cityName}`,
+            `${serviceName} بأعلى جودة في ${cityName}`,
+            `خدمات ${serviceName} المتخصصة`,
+            `أفضل خدمات ${serviceName} في السعودية`,
+            `أفضل شركات ${serviceName} في ${cityName}`,
+            `متخصصون في ${serviceName} في ${cityName}`,
+            `خدمات ${serviceName} الموثوقة`,
+            `${serviceName} بشكل احترافي في ${cityName}`,
+            `نقل ${serviceName} بجودة عالية في ${cityName}`,
+            `أسعار مميزة لخدمات ${serviceName} في ${cityName}`,
+            `خدمات ${serviceName} الموثوقة في ${cityName}`
+        ]
+    };
+
+    // Generate dynamic keywords from the service description (split by spaces and filter meaningful words)
+    const descriptionKeywords = serviceDescription.match(/\b\w+\b/g)
+        ? serviceDescription.match(/\b\w+\b/g).map(word => word.toLowerCase())
+        : [];
+
+    // Combine all keywords
+    const allKeywords = [
+        ...baseKeywords[locale],
+        ...descriptionKeywords,
+        `${serviceName} ${cityName}`,
+        `${serviceName} in Saudi Arabia`,
+        `${serviceName} professional services`,
+        `Reliable ${serviceName}`,
+        `${serviceName} transportation`, // Example for a service related to transport
+        `${serviceName} moving services` // More generalized moving services
+    ];
+
+    // Remove duplicates
+    const uniqueKeywords = [...new Set(allKeywords)];
+
+    return uniqueKeywords.slice(0, 20); // Return the top 20 keywords
 }
 
 export default async function ContactPage({ params: { locale, id } }) {
@@ -103,7 +179,8 @@ export default async function ContactPage({ params: { locale, id } }) {
         },
         "priceRange": contact.service.priceRange || "Contact for Pricing", // Include price range if possible
     };
-    
+
+    const keywords = generateKeywords(contact, locale);
 
     return (
         <section className="service-page" dir={dir}>
@@ -149,8 +226,18 @@ export default async function ContactPage({ params: { locale, id } }) {
                 <div className="image-section">
                     <ImageSlider images={images} />
                 </div>
-            </div>
 
+
+
+            </div>
+            <div className="keywords-section">
+                <h2>{messages.services.keywordsTitle}</h2>
+                <ul>
+                    {keywords.map((keyword, index) => (
+                        <li key={index}>{keyword}</li>
+                    ))}
+                </ul>
+            </div>
             {/* JSON-LD for Structured Data */}
             <script type="application/ld+json">
                 {JSON.stringify(structuredData)}

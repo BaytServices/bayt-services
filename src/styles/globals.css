@@ -1328,3 +1328,81 @@ footer[dir="rtl"] .footer-contact a::after {
   left: auto;
   right: 0;
 }
+
+
+/* Keywords Section */
+.keywords-section {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Title of the Keywords Section */
+.keywords-section h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Style for the Keywords List */
+.keywords-section ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Style for each list item */
+.keywords-section li {
+  font-size: 1rem;
+  color: #555;
+  background-color: #e0f7fa;
+  border-radius: 20px;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  border: 1px solid #00bcd4;
+  text-transform: capitalize;
+}
+
+/* Hover effect for the keywords */
+.keywords-section li:hover {
+  background-color: #00bcd4;
+  color: #fff;
+  border-color: #0097a7;
+}
+
+/* Responsive Design: Stack keywords for small screens */
+@media screen and (max-width: 768px) {
+  .keywords-section ul {
+      justify-content: flex-start;
+  }
+
+  .keywords-section li {
+      font-size: 0.9rem;
+      padding: 8px 12px;
+  }
+}
+
+/* Mobile first approach */
+@media screen and (max-width: 480px) {
+  .keywords-section {
+      padding: 15px;
+  }
+
+  .keywords-section h2 {
+      font-size: 1.6rem;
+  }
+
+  .keywords-section li {
+      font-size: 0.85rem;
+      padding: 6px 10px;
+  }
+}

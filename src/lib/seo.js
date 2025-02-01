@@ -47,7 +47,7 @@ export function generateSeoMetadata({
       },
     },
     verification: {
-      google: 'your-google-verification-code',
+      google: 'google0bd58f874b86fa83.html',
     }
   };
 }

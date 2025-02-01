@@ -16,15 +16,16 @@ async function fetchAllServiceContacts() {
     }
 }
 
-export default async function sitemap() {
+export default async function sitemap(lang = 'ar') {
     const serviceContacts = await fetchAllServiceContacts();
 
     const serviceEntries = serviceContacts.map(contact => {
-        const serviceNameSlug = encodeURIComponent(contact.service.name.ar || '').replace(/%20/g, '-');
-        const citySlug = encodeURIComponent(contact.city.name.ar || '').replace(/%20/g, '-');
+        // Access the name and city in the appropriate language
+        const serviceNameSlug = encodeURIComponent(contact.service.name[lang] || '').replace(/%20/g, '-');
+        const citySlug = encodeURIComponent(contact.city.name[lang] || '').replace(/%20/g, '-');
         
         return {
-            url: `${BASE_URL}/ar/services/${serviceNameSlug}/${citySlug}/${contact._id}`,
+            url: `${BASE_URL}/${lang}/services/${serviceNameSlug}/${citySlug}/${contact._id}`,
             lastModified: new Date(contact.updatedAt).toISOString(),
             changeFrequency: 'daily',
             priority: 0.9,
@@ -39,7 +40,7 @@ export default async function sitemap() {
 
     const staticPages = [
         {
-            url: BASE_URL,
+            url: `${BASE_URL}/${lang}`,
             lastModified: new Date().toISOString(),
             changeFrequency: 'daily',
             priority: 1.0,

@@ -3,15 +3,19 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**', // Allows all HTTPS domains
+        hostname: '**',
       },
     ],
   },
   async rewrites() {
     return [
       {
-        source: '/sitemap.xml',
-        destination: '/api/sitemap', // Maps /sitemap.xml to /api/sitemap
+        source: '/ar/sitemap.xml',
+        destination: '/api/sitemap?lang=ar', // Pass language as a query param
+      },
+      {
+        source: '/en/sitemap.xml',
+        destination: '/api/sitemap?lang=en', // Pass language as a query param
       },
     ];
   },

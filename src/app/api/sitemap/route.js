@@ -3,11 +3,15 @@
 import sitemap from '../../../app/sitemap'; // Path to your sitemap generation logic
 
 export async function GET(req) {
+    // Get the language from the query parameters (either 'ar' or 'en')
+    const { searchParams } = new URL(req.url);
+    const lang = searchParams.get('lang') || 'en'; // Default to 'en' if no lang is provided
+
     try {
-        const sitemapEntries = await sitemap();
-        
+        const sitemapEntries = await sitemap(lang); // Pass language to your sitemap function
+
         // Generate the XML string for the sitemap
-        const xml = generateSitemapXml(sitemapEntries); 
+        const xml = generateSitemapXml(sitemapEntries, lang);
 
         // Return the sitemap as an XML response
         return new Response(xml, {
@@ -23,12 +27,17 @@ export async function GET(req) {
 }
 
 // Helper function to generate XML from sitemap entries
-function generateSitemapXml(entries) {
+function generateSitemapXml(entries, lang) {
     const urls = entries
         .map(entry => {
+            // Adjust URLs based on the language (you might want to add more logic here)
+            const localizedUrl = lang === 'ar' 
+                ? entry.url.replace('/en/', '/ar/') // Convert to Arabic version of URL
+                : entry.url; // Keep the default (English)
+
             return `
                 <url>
-                    <loc>${entry.url}</loc>
+                    <loc>${localizedUrl}</loc>
                     <lastmod>${entry.lastModified}</lastmod>
                     <changefreq>${entry.changeFrequency}</changefreq>
                     <priority>${entry.priority}</priority>

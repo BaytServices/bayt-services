@@ -39,6 +39,23 @@ export default async function Home({ params: { locale } }) {
       </section>
 
       {/* New Why Us Section */}
+
+
+      <section id='about'>
+        <div className="container">
+          <div className="text">
+            <h2 className='title'>{messages.about.aboutUs}</h2>
+            <p>{messages.about.aboutText}</p>
+          </div>
+          <div className="image">
+            <Image
+              src={AboutImg}
+              alt={messages.about.aboutUs}
+            />
+          </div>
+        </div>
+      </section>
+
       <section id="why-us" dir={dir}>
         <div className="container">
           <div className="heading">
@@ -61,21 +78,6 @@ export default async function Home({ params: { locale } }) {
               <h3>{messages.home.whyUsQ4}</h3>
               <p>{messages.home.whyUsA4}</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section id='about'>
-        <div className="container">
-          <div className="text">
-            <h2 className='title'>{messages.about.aboutUs}</h2>
-            <p>{messages.about.aboutText}</p>
-          </div>
-          <div className="image">
-            <Image
-              src={AboutImg}
-              alt={messages.about.aboutUs}
-            />
           </div>
         </div>
       </section>

@@ -186,7 +186,12 @@ export default async function ContactPage({ params: { locale, id } }) {
         "priceRange": contact.service.priceRange || "Contact for Pricing",
     };
 
-    const keywords = contact.keywords?.[locale] || generateKeywords(contact, locale);
+    // Generate keywords from API and the service description
+    const apiKeywords = contact.keywords?.[locale] || [];
+    const generatedKeywords = generateKeywords(contact, locale);
+
+    // Combine API keywords and dynamically generated keywords
+    const combinedKeywords = [...new Set([...apiKeywords, ...generatedKeywords])];
 
     return (
         <section className="service-page" dir={dir}>
@@ -236,7 +241,7 @@ export default async function ContactPage({ params: { locale, id } }) {
             <div className="keywords-section">
                 <h2>{messages.services.keywordsTitle}</h2>
                 <ul>
-                    {keywords.map((keyword, index) => (
+                    {combinedKeywords.map((keyword, index) => (
                         <li key={index}>{keyword}</li>
                     ))}
                 </ul>

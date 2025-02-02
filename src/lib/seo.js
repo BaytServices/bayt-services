@@ -8,46 +8,62 @@ export function generateSeoMetadata({
   images = []
 }) {
   const siteName = locale === 'ar' ? 'بيت الخدمات' : 'Bayt Services';
-  
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
+
+  // Default image handling
+  const defaultImages = [{
+    url: `${baseUrl}/og-default.jpg`,
+    width: 1200,
+    height: 630,
+    alt: title[locale],
+  }];
+
+  const finalImages = images.length > 0 ? images : defaultImages;
+
   return {
+    metadataBase: new URL(baseUrl),
     title: title[locale],
     description: description[locale],
     keywords: keywords[locale],
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL),
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}${path}`,
+      canonical: `${baseUrl}/${locale}${path}`,
       languages: {
-        ar: `${process.env.NEXT_PUBLIC_SITE_URL}/ar${path}`,
-        en: `${process.env.NEXT_PUBLIC_SITE_URL}/en${path}`
+        'ar-SA': `${baseUrl}/ar${path}`,
+        'en-US': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
       title: title[locale],
       description: description[locale],
-      url: `${process.env.NEXT_PUBLIC_SITE_URL}${path}`,
+      url: `${baseUrl}/${locale}${path}`,
       siteName,
-      locale,
+      locale: locale === 'ar' ? 'ar_SA' : 'en_US',
       type: 'website',
-      images: images.map(img => ({
-        url: img,
-        width: 800,
-        height: 600,
-        alt: title[locale]
-      }))
+      images: finalImages,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: title[locale],
+      description: description[locale],
+      images: finalImages,
     },
     robots: {
       index: true,
       follow: true,
+      nocache: false,
       googleBot: {
         index: true,
         follow: true,
+        noimageindex: false,
         'max-video-preview': -1,
         'max-image-preview': 'large',
         'max-snippet': -1,
       },
     },
     verification: {
-      google: 'google0bd58f874b86fa83.html',
-    }
+      google: 'sQJZlEnPUPHp84QFBQNNe6s-qqpQV8oFYtVA5TXq7iw',
+      yandex: 'yandex-verification-code',
+    },
+    other: {}
   };
 }

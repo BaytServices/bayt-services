@@ -82,10 +82,8 @@ export default async function Home({ params: { locale } }) {
           </div>
         </div>
       </section>
-      <section id="special">
-        <h2>{messages.speical.title}</h2>
+        
         <SpecialContactsCarousel locale={locale} messages={messages} />
-      </section>
     </>
   );
 }

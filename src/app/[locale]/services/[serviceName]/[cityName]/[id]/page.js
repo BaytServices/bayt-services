@@ -7,7 +7,7 @@ import ImageSlider from '../../../../../../components/shared/ImageSlider';
 import Banner from '../../../../../../components/shared/Banner';
 
 export async function generateMetadata({ params }) {
-    const { locale, id } = await params;
+    const { locale, id } = params;
     const contact = await fetch(`https://bayt-admin.vercel.app/api/service-contacts/${id}`)
         .then((res) => res.json())
         .catch((error) => {
@@ -21,18 +21,24 @@ export async function generateMetadata({ params }) {
         robots: 'noindex, nofollow',
     };
 
+    // Use contact description if available, otherwise fallback to service description
+    const description = contact.description?.[locale] || contact.service.description[locale];
+
+    // Use contact keywords if available, otherwise generate them dynamically
+    const keywords = contact.keywords?.[locale] || generateKeywords(contact, locale);
+
     const meta = generateSeoMetadata({
         title: {
             ar: `${contact.name.ar} - ${contact.service.name.ar} في ${contact.city.name.ar} | خدمات مميزة`,
             en: `${contact.name.en} - ${contact.service.name.en} in ${contact.city.name.en} | Top Quality Services`,
         },
         description: {
-            ar: `احصل على ${contact.service.name.ar} المميزة في ${contact.city.name.ar}. نقدم خدمات عالية الجودة تلبي احتياجاتك. تواصل معنا عبر الواتساب أو الهاتف الآن.`,
-            en: `Get premium ${contact.service.name.en} in ${contact.city.name.en}. We offer high-quality services tailored to your needs. Contact us via WhatsApp or phone today.`,
+            ar: description,
+            en: description,
         },
         keywords: {
-            ar: `${contact.service.name.ar}, ${contact.city.name.ar}, خدمات منزلية, أفضل شركة خدمات, ${contact.name.ar}, خدمات ${contact.service.name.ar} في ${contact.city.name.ar}`,
-            en: `${contact.service.name.en}, ${contact.city.name.en}, home services, best service company, ${contact.name.en}, ${contact.service.name.en} in ${contact.city.name.en}`,
+            ar: keywords.join(', '),
+            en: keywords.join(', '),
         },
         path: `/${locale}/services/${id}`,
         locale,
@@ -54,14 +60,14 @@ export async function generateMetadata({ params }) {
             images: contact.images?.length > 0 ? contact.images[0] : contact.service.image,
         },
     };
-
 }
+
 function generateKeywords(contact, locale) {
     const cityName = contact.city.name[locale];
     const serviceName = contact.service.name[locale];
     const serviceDescription = contact.service.description[locale];
 
-    // Base keyword patterns (these are still dynamic and based on service name and city)
+    // Base keyword patterns
     const baseKeywords = {
         en: [
             `${serviceName} in ${cityName}`,
@@ -109,7 +115,7 @@ function generateKeywords(contact, locale) {
         ]
     };
 
-    // Generate dynamic keywords from the service description (split by spaces and filter meaningful words)
+    // Generate dynamic keywords from the service description
     const descriptionKeywords = serviceDescription.match(/\b\w+\b/g)
         ? serviceDescription.match(/\b\w+\b/g).map(word => word.toLowerCase())
         : [];
@@ -122,8 +128,8 @@ function generateKeywords(contact, locale) {
         `${serviceName} in Saudi Arabia`,
         `${serviceName} professional services`,
         `Reliable ${serviceName}`,
-        `${serviceName} transportation`, // Example for a service related to transport
-        `${serviceName} moving services` // More generalized moving services
+        `${serviceName} transportation`,
+        `${serviceName} moving services`
     ];
 
     // Remove duplicates
@@ -164,23 +170,23 @@ export default async function ContactPage({ params: { locale, id } }) {
                 "@type": "ContactPoint",
                 "telephone": contact.phone,
                 "contactType": "Customer Service",
-                "areaServed": contact.city.name[locale], // Add area served to improve local SEO
+                "areaServed": contact.city.name[locale],
                 "availableLanguage": locale === 'ar' ? "Arabic" : "English"
             },
         },
         "serviceArea": contact.city.name[locale],
         "image": images,
-        "description": contact.service.description[locale],
+        "description": contact.description?.[locale] || contact.service.description[locale],
         "url": `https://bayt-services.com/${locale}/services/${contact._id}`,
         "geo": {
             "@type": "GeoCoordinates",
-            "latitude": contact.city.latitude, // If available, to improve local ranking
+            "latitude": contact.city.latitude,
             "longitude": contact.city.longitude
         },
-        "priceRange": contact.service.priceRange || "Contact for Pricing", // Include price range if possible
+        "priceRange": contact.service.priceRange || "Contact for Pricing",
     };
 
-    const keywords = generateKeywords(contact, locale);
+    const keywords = contact.keywords?.[locale] || generateKeywords(contact, locale);
 
     return (
         <section className="service-page" dir={dir}>
@@ -206,7 +212,7 @@ export default async function ContactPage({ params: { locale, id } }) {
                     </p>
                     <div className="service-description">
                         <h2>{messages.services.description}</h2>
-                        <p>{contact.service.description[locale]}</p>
+                        <p>{contact.description?.[locale] || contact.service.description[locale]}</p>
                     </div>
                     <div className="contact-actions">
                         <a
@@ -226,9 +232,6 @@ export default async function ContactPage({ params: { locale, id } }) {
                 <div className="image-section">
                     <ImageSlider images={images} />
                 </div>
-
-
-
             </div>
             <div className="keywords-section">
                 <h2>{messages.services.keywordsTitle}</h2>

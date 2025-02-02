@@ -91,84 +91,85 @@ export default function SpecialContactsCarousel({ locale }) {
     // If no special contacts are found, you can return a message or nothing.
     if (contacts.length === 0) {
         return (
-            <div className="carousel-container contacts-carousel">
-                <p>{messages.noSpecialContacts || 'No special contacts available.'}</p>
-            </div>
+            ""
         );
     }
 
     return (
-        <div className="carousel-container contacts-carousel">
-            {/* Left arrow button */}
-            <button className="arrow arrow-left" onClick={scrollLeft}>
-                &#9664;
-            </button>
-            {/* Right arrow button */}
-            <button className="arrow arrow-right" onClick={scrollRight}>
-                &#9654;
-            </button>
+        <section id="speical">
+            <h2>{messages.speical.title}</h2>
+            <div className="carousel-container contacts-carousel">
+                {/* Left arrow button */}
+                <button className="arrow arrow-left" onClick={scrollLeft}>
+                    &#9664;
+                </button>
+                {/* Right arrow button */}
+                <button className="arrow arrow-right" onClick={scrollRight}>
+                    &#9654;
+                </button>
 
-            <div className="grid-services" ref={gridRef}>
-                {contacts.map((contact) => (
-                    <div
-                        key={contact._id}
-                        className="service-card"
-                        onClick={() => {
-                            console.log("City Name:", contact.city.name[locale]);
-                            console.log("Service Name:", contact.service.name[locale]);
-                            handleContactClick(contact._id, contact.city.name, contact.service.name);
-                        }}
-                    >
-                        <div className="image-container">
-                            <img
-                                src={getDisplayImage(contact)}
-                                alt={contact.name[locale]}
-                                className="service-image"
-                            />
+                <div className="grid-services" ref={gridRef}>
+                    {contacts.map((contact) => (
+                        <div
+                            key={contact._id}
+                            className="service-card"
+                            onClick={() => {
+                                console.log("City Name:", contact.city.name[locale]);
+                                console.log("Service Name:", contact.service.name[locale]);
+                                handleContactClick(contact._id, contact.city.name, contact.service.name);
+                            }}
+                        >
+                            <div className="image-container">
+                                <img
+                                    src={getDisplayImage(contact)}
+                                    alt={contact.name[locale]}
+                                    className="service-image"
+                                />
+                            </div>
+                            <div className="service-content">
+                                <h3 className="service-title">{contact.name[locale]}</h3>
+                                <div className="service-info">
+                                    <span className="location-badge">
+                                        <FontAwesomeIcon icon={faLocationDot} />
+                                        {contact.city.name[locale]}
+                                    </span>
+                                    <span className="service-type">
+                                        <FontAwesomeIcon icon={faTags} />
+                                        {contact.service.name[locale]}
+                                    </span>
+                                </div>
+                                <div className="stars">
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                </div>
+                                <div className="contact-buttons">
+                                    <a
+                                        href={`https://wa.me/${contact.whatsapp}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="contact-button whatsapp-button"
+                                        onClick={(e) => e.stopPropagation()}
+                                    >
+                                        {messages.services.whatsapp}
+                                        <i className="fa-brands fa-whatsapp"></i>
+                                    </a>
+                                    <a
+                                        href={`tel:${contact.phone}`}
+                                        className="contact-button call-button"
+                                        onClick={(e) => e.stopPropagation()}
+                                    >
+                                        {messages.services.call}
+                                        <FontAwesomeIcon icon={faPhone} />
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div className="service-content">
-                            <h3 className="service-title">{contact.name[locale]}</h3>
-                            <div className="service-info">
-                                <span className="location-badge">
-                                    <FontAwesomeIcon icon={faLocationDot} />
-                                    {contact.city.name[locale]}
-                                </span>
-                                <span className="service-type">
-                                    <FontAwesomeIcon icon={faTags} />
-                                    {contact.service.name[locale]}
-                                </span>
-                            </div>
-                            <div className="stars">
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                            </div>
-                            <div className="contact-buttons">
-                                <a
-                                    href={`https://wa.me/${contact.whatsapp}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="contact-button whatsapp-button"
-                                    onClick={(e) => e.stopPropagation()}
-                                >
-                                    {messages.services.whatsapp}
-                                    <i className="fa-brands fa-whatsapp"></i>
-                                </a>
-                                <a
-                                    href={`tel:${contact.phone}`}
-                                    className="contact-button call-button"
-                                    onClick={(e) => e.stopPropagation()}
-                                >
-                                    {messages.services.call}
-                                    <FontAwesomeIcon icon={faPhone} />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
-        </div>
+        </section>
     );
 }

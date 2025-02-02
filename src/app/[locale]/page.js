@@ -9,6 +9,7 @@ import arMessages from '../../messages/ar.json';
 import enMessages from '../../messages/en.json';
 import BannerImg from "../../assets/images/handyman.png";
 import AboutImg from "../../assets/images/about.jpg"
+import SpecialContactsCarousel from '../../components/shared/SpeicalCarousel';
 export default async function Home({ params: { locale } }) {
   const messages = locale === 'ar' ? arMessages : enMessages;
   const dir = locale === 'ar' ? 'rtl' : 'ltr';
@@ -59,7 +60,7 @@ export default async function Home({ params: { locale } }) {
       <section id="why-us" dir={dir}>
         <div className="container">
           <div className="heading">
-            <h1>{messages.home.whyUsTitle}</h1>
+            <h2>{messages.home.whyUsTitle}</h2>
           </div>
           <div className="faq">
             <div className="faq-item">
@@ -80,6 +81,10 @@ export default async function Home({ params: { locale } }) {
             </div>
           </div>
         </div>
+      </section>
+      <section id="special">
+        <h2>{messages.speical.title}</h2>
+        <SpecialContactsCarousel locale={locale} messages={messages} />
       </section>
     </>
   );

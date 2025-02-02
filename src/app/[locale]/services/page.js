@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faLocationDot, faTags } from '@fortawesome/free-solid-svg-icons';
 import Select from 'react-select';
 import { use } from 'react';
+import SmartPagination from "../../../components/shared/SmartPagination"
 export default function ServicesPage({ params }) {
   const { locale } = use(params)
   const router = useRouter();
@@ -24,6 +25,7 @@ export default function ServicesPage({ params }) {
   const [allContacts, setAllContacts] = useState([]);
   const [filteredContacts, setFilteredContacts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Filter states
   const [filters, setFilters] = useState({
@@ -36,6 +38,42 @@ export default function ServicesPage({ params }) {
   const contactsPerPage = 10;
   const totalPages = Math.ceil(filteredContacts.length / contactsPerPage);
 
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Calculate visible page numbers
+  const calculatePages = () => {
+    const maxPagesToShow = isMobile ? 5 : 10;
+    let pageNumbers = [];
+
+    if (totalPages <= maxPagesToShow) {
+      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    }
+
+    const half = Math.floor((maxPagesToShow - 1) / 2);
+    let startPage = filters.page - half;
+    let endPage = filters.page + (maxPagesToShow - half - 1);
+
+    if (startPage < 1) {
+      startPage = 1;
+      endPage = maxPagesToShow;
+    }
+    if (endPage > totalPages) {
+      endPage = totalPages;
+      startPage = Math.max(1, endPage - maxPagesToShow + 1);
+    }
+
+    return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+  };
+
+  const pageNumbers = calculatePages();
   // Initial data fetch
   useEffect(() => {
     const fetchData = async () => {
@@ -243,7 +281,15 @@ export default function ServicesPage({ params }) {
         </div>
         {totalPages > 1 && (
           <div className="pagination">
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <button
+              onClick={() => setFilters(prev => ({ ...prev, page: prev.page - 1 }))}
+              disabled={filters.page === 1}
+              className="page-button prev-next"
+            >
+              السابق
+            </button>
+
+            {pageNumbers.map(page => (
               <button
                 key={page}
                 onClick={() => setFilters(prev => ({ ...prev, page }))}
@@ -252,6 +298,14 @@ export default function ServicesPage({ params }) {
                 {page}
               </button>
             ))}
+
+            <button
+              onClick={() => setFilters(prev => ({ ...prev, page: prev.page + 1 }))}
+              disabled={filters.page === totalPages}
+              className="page-button prev-next"
+            >
+              التالي
+            </button>
           </div>
         )}
       </div>

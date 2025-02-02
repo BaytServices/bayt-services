@@ -96,7 +96,7 @@ export default function RootLayout({ children, params: { locale } }) {
               "name": "${locale === 'ar' ? 'بيت الخدمات' : 'Bayt Services'}",
               "url": "https://bayt-services.com/",
               "logo": "https://www.bayt-services.com/logo.png",
-              "image": "https://www.bayt-services.com/og-image.jpg",
+              "image": "https://www.bayt-services.com/logo.png",
               "description": "${locale === 'ar' ? 'اكتشف مزودي خدمات المنازل الموثوقين في مدينتك...' : 'Discover trusted home service providers in your city...'}",
               "address": {
                 "@type": "PostalAddress",

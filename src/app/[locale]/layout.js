@@ -26,8 +26,8 @@ export async function generateMetadata({ params }) {
       en: 'Bayt Services - Comprehensive Home Services Across Saudi Arabia'
     },
     description: {
-      ar: "اكتشف خدمات متعددة وموثوقة للمنزل في جميع أنحاء المملكة العربية السعودية. نحن نوفر مجموعة واسعة من الخدمات المنزلية مثل الصيانة، التنظيف، النقل، والمزيد. خدماتنا متوفرة في كافة المدن والمناطق.",
-      en: "Discover a wide range of trusted home services across Saudi Arabia. From maintenance, cleaning, moving services, and more, we provide reliable services in every city and region."
+      ar: "اكتشف خدمات منزلية موثوقة في جميع أنحاء المملكة العربية السعودية. نقدم حلولًا متكاملة لتلبية جميع احتياجاتك في كل مدينة ومناطق المملكة.",
+      en: "Discover reliable home services across Saudi Arabia. We offer comprehensive solutions to meet all your needs in every city and region of the Kingdom."
     },
     keywords: {
       ar: 'خدمات منزلية, صيانة منازل, تنظيف, نقل اثاث, خدمات السعودية, خدمات تنظيف, خدمات صيانة',

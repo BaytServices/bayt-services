@@ -17,6 +17,14 @@ const nextConfig = {
         source: '/en/sitemap.xml',
         destination: '/api/sitemap?lang=en', // Pass language as a query param
       },
+      {
+        source: '/ar/robots.txt',  // or any other locale path
+        destination: '/robots.txt', // redirect to the root robots.txt
+      },
+      {
+        source: '/en/robots.txt',  // or any other locale path
+        destination: '/robots.txt', // redirect to the root robots.txt
+      },
     ];
   },
   reactStrictMode: true,

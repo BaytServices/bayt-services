@@ -10,9 +10,10 @@ import Logo from "../../assets/images/logo.png"
 
 export async function generateMetadata({ params }) {
   const { locale } = params;
+  const logo = "../../assets/images/logo.png"
   const defaultImages = [
     {
-      url: 'https://www.bayt-services.com/og-image.jpg',
+      url: logo,
       width: 1200,
       height: 630,
       alt: locale === 'ar' ? 'بيت الخدمات' : 'Bayt Services',
@@ -21,16 +22,16 @@ export async function generateMetadata({ params }) {
 
   const metadata = generateSeoMetadata({
     title: {
-      ar: 'بيت الخدمات - خدمات موثوقة في جميع مدن المملكة',
-      en: 'Bayt Services - Trusted Services Across Saudi Arabia'
+      ar: 'بيت الخدمات - خدمات متنوعة في جميع أنحاء المملكة العربية السعودية',
+      en: 'Bayt Services - Comprehensive Home Services Across Saudi Arabia'
     },
     description: {
-      ar: "اكتشف مزودي خدمات المنازل الموثوقين في مدينتك. نوفر مجموعة واسعة من الخدمات الموثوقة في جميع أنحاء المملكة العربية السعودية لتلبية جميع احتياجاتك المنزلية والحياتية.",
-      en: "Discover trusted home service providers in your city. Offering a wide range of reliable services across Saudi Arabia, we connect you with professionals for all your home and lifestyle needs."
+      ar: "اكتشف خدمات متعددة وموثوقة للمنزل في جميع أنحاء المملكة العربية السعودية. نحن نوفر مجموعة واسعة من الخدمات المنزلية مثل الصيانة، التنظيف، النقل، والمزيد. خدماتنا متوفرة في كافة المدن والمناطق.",
+      en: "Discover a wide range of trusted home services across Saudi Arabia. From maintenance, cleaning, moving services, and more, we provide reliable services in every city and region."
     },
     keywords: {
-      ar: 'خدمات منزلية, خدمات تنظيف, صيانة منازل, نقل اثاث, خدمات السعودية',
-      en: 'home services, cleaning services, maintenance, moving services, saudi arabia services'
+      ar: 'خدمات منزلية, صيانة منازل, تنظيف, نقل اثاث, خدمات السعودية, خدمات تنظيف, خدمات صيانة',
+      en: 'home services, maintenance services, cleaning, moving services, Saudi Arabia services, cleaning services, maintenance services'
     },
     path: '/',
     locale,
@@ -71,6 +72,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
+
 export default function RootLayout({ children, params: { locale } }) {
   return (
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
@@ -80,7 +82,7 @@ export default function RootLayout({ children, params: { locale } }) {
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
 
-        <link rel="canonical" href={`https://bayt-services.com/${locale}`} />
+        <link rel="canonical" href={`https://bayt-services.com`} />
         <link rel="alternate" hreflang="ar" href="https://bayt-services.com/ar" />
         <link rel="alternate" hreflang="en" href="https://bayt-services.com/en" />
         <link rel="alternate" hreflang="x-default" href="https://bayt-services.com" />

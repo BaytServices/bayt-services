@@ -57,6 +57,9 @@ export default async function Home({ params: { locale } }) {
         </div>
       </section>
 
+
+
+      <SpecialContactsCarousel locale={locale} messages={messages} />
       <section id="why-us" dir={dir}>
         <div className="container">
           <div className="heading">
@@ -82,8 +85,6 @@ export default async function Home({ params: { locale } }) {
           </div>
         </div>
       </section>
-        
-        <SpecialContactsCarousel locale={locale} messages={messages} />
     </>
   );
 }

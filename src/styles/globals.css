@@ -903,7 +903,7 @@ section#services-section .heading p {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   /* Set a fixed or minimum width to avoid tiny cards */
-  min-width: 330px;
+  min-width: 320px;
   padding: 20px;
   border: 1px solid #eaeaea;
   height: fit-content;

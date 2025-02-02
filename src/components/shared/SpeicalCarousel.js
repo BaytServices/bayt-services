@@ -9,23 +9,22 @@ import enMessages from '../../messages/en.json';
 import { useRouter } from 'next/navigation';
 
 export default function SpecialContactsCarousel({ locale }) {
-    // Choose messages based on the locale
     const messages = locale === 'ar' ? arMessages : enMessages;
     const router = useRouter();
 
     const [contacts, setContacts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [showArrows, setShowArrows] = useState(false); // State to control arrows visibility
 
-    // Ref for the grid container to perform scrolling
     const gridRef = useRef(null);
 
-    // Helper function to get a display image
     const getDisplayImage = (contact) => {
         if (contact.images && contact.images.length > 0) {
             return contact.images[0];
         }
         return contact.service.image;
     };
+
     const toSlug = (text = "") => {
         return text
             .toString() // Ensure text is a string
@@ -35,39 +34,42 @@ export default function SpecialContactsCarousel({ locale }) {
             .toLowerCase(); // Convert to lowercase
     };
 
-
-    // Handler for when a contact is clicked
     const handleContactClick = (contactId, cityName, serviceName) => {
         const citySlug = toSlug(cityName[locale]);
         const serviceSlug = toSlug(serviceName[locale]);
         router.push(`/${locale}/services/${serviceSlug}/${citySlug}/${contactId}`);
     };
 
-
-
-    // Scroll the grid container to the left
     const scrollLeft = () => {
         if (gridRef.current) {
             gridRef.current.scrollBy({ left: -320, behavior: 'smooth' });
         }
     };
 
-    // Scroll the grid container to the right
     const scrollRight = () => {
         if (gridRef.current) {
             gridRef.current.scrollBy({ left: 320, behavior: 'smooth' });
         }
     };
 
+    // Function to check if arrows should be shown
+    const checkArrowsVisibility = () => {
+        if (gridRef.current) {
+            const containerWidth = gridRef.current.offsetWidth;
+            const totalWidth = gridRef.current.scrollWidth;
+            // If the total width of the items is greater than the container width, show arrows
+            setShowArrows(totalWidth > containerWidth);
+        }
+    };
+
     useEffect(() => {
         const fetchContacts = async () => {
             try {
-                const response = await fetch('https://bayt-admin.vercel.app/api/service-contacts'); // Fetch all contacts
+                const response = await fetch('https://bayt-admin.vercel.app/api/service-contacts');
                 if (!response.ok) {
                     throw new Error('Failed to fetch contacts');
                 }
                 const data = await response.json();
-                // Filter contacts for those with isSpecial true
                 const specialContacts = data.contacts.filter(contact => contact.isSpecial);
                 setContacts(specialContacts);
             } catch (error) {
@@ -80,6 +82,19 @@ export default function SpecialContactsCarousel({ locale }) {
         fetchContacts();
     }, []);
 
+    useEffect(() => {
+        // Check arrows visibility when the component is mounted or contacts change
+        checkArrowsVisibility();
+
+        // Optional: Add an event listener to handle window resizing
+        window.addEventListener('resize', checkArrowsVisibility);
+
+        // Clean up the event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', checkArrowsVisibility);
+        };
+    }, [contacts]);
+
     if (loading) {
         return (
             <div className="carousel-container contacts-carousel">
@@ -88,7 +103,6 @@ export default function SpecialContactsCarousel({ locale }) {
         );
     }
 
-    // If no special contacts are found, you can return a message or nothing.
     if (contacts.length === 0) {
         return (
             ""
@@ -96,17 +110,21 @@ export default function SpecialContactsCarousel({ locale }) {
     }
 
     return (
-        <section id="speical">
+        <section id="special">
             <h2>{messages.speical.title}</h2>
             <div className="carousel-container contacts-carousel">
                 {/* Left arrow button */}
-                <button className="arrow arrow-left" onClick={scrollLeft}>
-                    &#9664;
-                </button>
+                {showArrows && (
+                    <button className="arrow arrow-left" onClick={scrollLeft}>
+                        &#9664;
+                    </button>
+                )}
                 {/* Right arrow button */}
-                <button className="arrow arrow-right" onClick={scrollRight}>
-                    &#9654;
-                </button>
+                {showArrows && (
+                    <button className="arrow arrow-right" onClick={scrollRight}>
+                        &#9654;
+                    </button>
+                )}
 
                 <div className="grid-services" ref={gridRef}>
                     {contacts.map((contact) => (

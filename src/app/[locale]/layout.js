@@ -65,9 +65,11 @@ export default function RootLayout({ children, params: { locale } }) {
   return (
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="https://www.bayt-services.com/favicon.ico" />
         <link rel="canonical" href="https://bayt-services.com/ar" />
         <link rel="alternate" hreflang="ar" href="https://bayt-services.com/ar" />
+        <link rel="icon" href="https://yourdomain.com/favicon.ico" type="image/x-icon" />
+        <meta property="og:image" content="https://www.bayt-services.com/favicon.ico/" />
 
         <link rel="canonical" href="https://bayt-services.com/en" />
         <link rel="alternate" hreflang="ar" href="https://bayt-services.com/en" />

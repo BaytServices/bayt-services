@@ -35,7 +35,7 @@ export default function ServicesPage({ params }) {
   });
 
   // Pagination
-  const contactsPerPage = 10;
+  const contactsPerPage = 20;
   const totalPages = Math.ceil(filteredContacts.length / contactsPerPage);
 
   // Mobile detection
@@ -122,11 +122,20 @@ export default function ServicesPage({ params }) {
   }, [filters, allContacts]);
 
   // Get paginated contacts
-  const getPaginatedContacts = () => {
-    const startIndex = (filters.page - 1) * contactsPerPage;
-    const endIndex = startIndex + contactsPerPage;
-    return filteredContacts.slice(startIndex, endIndex);
-  };
+// Pagination
+
+// Get paginated contacts
+const getPaginatedContacts = () => {
+  const startIndex = (filters.page - 1) * contactsPerPage;
+  const endIndex = startIndex + contactsPerPage;
+  
+  // Ensure at least 12 contacts are displayed if available
+  const contacts = filteredContacts.slice(startIndex, endIndex);
+  return contacts.length < contactsPerPage && filters.page === 1
+    ? filteredContacts.slice(0, contactsPerPage)
+    : contacts;
+};
+
 
   // Handle filter changes
   const handleFilterChange = (type, selectedOption) => {

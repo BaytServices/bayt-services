@@ -26,7 +26,7 @@ export default async function Home({ params: { locale } }) {
       <section id='services-section' dir={dir}>
         <div className='container'>
           <div className='heading'>
-            <h1>{messages.home.servicesTitle}</h1>
+            <h2>{messages.home.servicesTitle}</h2>
             <p>{messages.home.servicesDescription}</p>
           </div>
           <ServicesCarousel

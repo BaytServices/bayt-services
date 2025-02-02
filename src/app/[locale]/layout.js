@@ -74,6 +74,23 @@ export default function RootLayout({ children, params: { locale } }) {
         <link rel="canonical" href="https://bayt-services.com/en" />
         <link rel="alternate" hreflang="ar" href="https://bayt-services.com/en" />
         <meta name="google-site-verification" content="sQJZlEnPUPHp84QFBQNNe6s-qqpQV8oFYtVA5TXq7iw" />
+        <script type='application/ld+json' >          {`${JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": locale === 'ar' ? 'بيت الخدمات' : 'Bayt Services',
+          "url": "https://bayt-services.com/",
+          "description": locale === 'ar'
+            ? "اكتشف مزودي خدمات المنازل الموثوقين في مدينتك. نوفر مجموعة واسعة من الخدمات الموثوقة في جميع أنحاء المملكة العربية السعودية لتلبية جميع احتياجاتك المنزلية والحياتية."
+            : "Discover trusted home service providers in your city. Offering a wide range of reliable services across Saudi Arabia, we connect you with professionals for all your home and lifestyle needs.",
+          "sameAs": [
+            "https://www.facebook.com/your-facebook-page",
+            "https://twitter.com/your-twitter-handle",
+            "https://www.instagram.com/your-instagram-handle"
+          ]
+        })
+          }`
+        }</script>
+
 
       </head>
       <body>

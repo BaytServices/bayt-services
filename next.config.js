@@ -26,12 +26,12 @@ const nextConfig = {
         destination: '/robots.txt', // redirect to the root robots.txt
       },
       {
-        source: '/ar/favicon.ico',
-        destination: '/favicon.ico', // Map localized path to the root favicon
+        source: '/ar/favicon-new.ico',
+        destination: '/favicon-new.ico', // Map localized path to the root favicon-new
       },
       {
-        source: '/en/favicon.ico',
-        destination: '/favicon.ico', // Map localized path to the root favicon
+        source: '/en/favicon-new.ico',
+        destination: '/favicon-new.ico', // Map localized path to the root favicon-new
       },
       {
         source: '/ar/icon.svg',

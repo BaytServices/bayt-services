@@ -159,11 +159,28 @@ const getPaginatedContacts = () => {
   };
 
 
-  const handleContactClick = (contactId, cityName, serviceName) => {
-    const citySlug = toSlug(cityName[locale]);
-    const serviceSlug = toSlug(serviceName[locale]);
-    router.push(`/${locale}/services/${serviceSlug}/${citySlug}/${contactId}`);
-  };
+// Prefetch the page for better performance
+useEffect(() => {
+  allContacts.forEach(contact => {
+    const citySlug = toSlug(contact.city.name[locale]);
+    const serviceSlug = toSlug(contact.service.name[locale]);
+    const path = `/${locale}/services/${serviceSlug}/${citySlug}/${contact._id}`;
+    router.prefetch(path);
+  });
+}, [allContacts, locale, router]);
+
+const handleContactClick = (contactId, cityName, serviceName) => {
+  const citySlug = toSlug(cityName[locale]);
+  const serviceSlug = toSlug(serviceName[locale]);
+  const path = `/${locale}/services/${serviceSlug}/${citySlug}/${contactId}`;
+
+  // Show loading state
+  setIsLoading(true);
+
+  // Navigate to the page
+  router.push(path);
+};
+
 
 
   // Get display image for contact

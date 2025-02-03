@@ -77,9 +77,9 @@ export default function RootLayout({ children, params: { locale } }) {
   return (
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="https://bayt-services.com/favicon-new.ico" sizes="any" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+        <link rel="shortcut icon" href="https://bayt-services.com/favicon-new.ico" type="image/x-icon"/>
 
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />

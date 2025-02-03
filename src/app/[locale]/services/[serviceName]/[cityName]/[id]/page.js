@@ -229,7 +229,8 @@ export default async function ContactPage({ params: { locale, id } }) {
                     </p>
 
                     <div className="social-icons">
-                            {Object.keys(socialMedia).map((platform) => {
+                        {socialMedia &&
+                            Object.keys(socialMedia).map((platform) => {
                                 const IconComponent = socialIcons[platform];
                                 const link = socialMedia[platform];
                                 return link ? (
@@ -244,7 +245,8 @@ export default async function ContactPage({ params: { locale, id } }) {
                                     </a>
                                 ) : null;
                             })}
-                        </div>
+
+                    </div>
                     <div className="service-description">
                         <h2>{messages.services.description}</h2>
                         <p>{contact.description?.[locale] || contact.service.description[locale]}</p>

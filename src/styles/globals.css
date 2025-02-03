@@ -30,6 +30,10 @@ body {
   color: var(--text-color);
   background-color: #fff;
   overflow-x: hidden;
+  user-select: none;
+  -webkit-user-select: none; /* For Safari */
+  -moz-user-select: none;    /* For Firefox */
+  -ms-user-select: none;     /* For Internet Explorer */
 }
 
 [dir="rtl"] {
@@ -1375,6 +1379,26 @@ section#services-section .heading p {
   height: 100%;
   flex-direction: column;
   margin-bottom: auto;
+}
+
+
+.service-page .details-section .social-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 8px;
+  margin-top: 10px;
+}
+.service-page .details-section .social-icons svg{
+  width: 30px;
+  height: 30px;
+  color: #0070f3;
+  transition: 0.3s;
+}
+
+.service-page .details-section .social-icons svg:hover {
+  color: var(--hover-color);
+  transform: scale(1.1);
 }
 
 .service-page .service-title {

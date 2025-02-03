@@ -5,6 +5,7 @@ import enMessages from '../../../../../../messages/en.json';
 import { generateSeoMetadata } from '../../../../../../lib/seo';
 import ImageSlider from '../../../../../../components/shared/ImageSlider';
 import Banner from '../../../../../../components/shared/Banner';
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaYoutube, FaTiktok, FaSnapchat, FaPinterest } from 'react-icons/fa';
 
 export async function generateMetadata({ params }) {
     const { locale, id } = params;
@@ -156,7 +157,18 @@ export default async function ContactPage({ params: { locale, id } }) {
     }
 
     const images = contact.images?.length > 0 ? contact.images : [contact.service.image];
+    const { socialMedia } = contact;
 
+    const socialIcons = {
+        facebook: FaFacebook,
+        twitter: FaTwitter,
+        instagram: FaInstagram,
+        linkedin: FaLinkedin,
+        youtube: FaYoutube,
+        tiktok: FaTiktok,
+        snapchat: FaSnapchat,
+        pinterest: FaPinterest,
+    };
     // Add Structured Data
     const structuredData = {
         "@context": "https://schema.org",
@@ -193,6 +205,7 @@ export default async function ContactPage({ params: { locale, id } }) {
     // Combine API keywords and dynamically generated keywords
     const combinedKeywords = [...new Set([...apiKeywords, ...generatedKeywords])];
 
+
     return (
         <section className="service-page" dir={dir}>
             <Banner
@@ -203,7 +216,6 @@ export default async function ContactPage({ params: { locale, id } }) {
                 locale={locale}
             />
             <div className="container">
-                {/* Service Details Section */}
                 <div className="details-section">
                     <h1 className="service-title">{contact.name[locale]}</h1>
                     <p className="service-location">
@@ -215,6 +227,24 @@ export default async function ContactPage({ params: { locale, id } }) {
                     <p className="service-phone">
                         <i className="fas fa-phone"></i> {contact.phone}
                     </p>
+
+                    <div className="social-icons">
+                            {Object.keys(socialMedia).map((platform) => {
+                                const IconComponent = socialIcons[platform];
+                                const link = socialMedia[platform];
+                                return link ? (
+                                    <a
+                                        key={platform}
+                                        href={link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="social-icon"
+                                    >
+                                        <IconComponent size={24} />
+                                    </a>
+                                ) : null;
+                            })}
+                        </div>
                     <div className="service-description">
                         <h2>{messages.services.description}</h2>
                         <p>{contact.description?.[locale] || contact.service.description[locale]}</p>
@@ -232,12 +262,13 @@ export default async function ContactPage({ params: { locale, id } }) {
                             <i className="fas fa-phone"></i> {messages.services.call}
                         </a>
                     </div>
+
                 </div>
-                {/* Image Section */}
                 <div className="image-section">
                     <ImageSlider images={images} />
                 </div>
             </div>
+
             <div className="keywords-section">
                 <h2>{messages.services.keywordsTitle}</h2>
                 <ul>
@@ -246,7 +277,6 @@ export default async function ContactPage({ params: { locale, id } }) {
                     ))}
                 </ul>
             </div>
-            {/* JSON-LD for Structured Data */}
             <script type="application/ld+json">
                 {JSON.stringify(structuredData)}
             </script>

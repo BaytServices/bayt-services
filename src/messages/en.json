@@ -72,6 +72,10 @@
   "speical": {
     "title": "Outstanding Services"
   },
+  "pagination": {
+    "next": "Next",
+    "prev": "Previous"
+  },
   "footer": {
     "logoAlt": "Bayt Services Logo",
     "aboutText": "Bayt Services is the ultimate platform connecting you with trusted professionals to meet all your home needs across Saudi Arabia. We provide high-quality services with speed and professionalism in all regions and cities.",

@@ -122,19 +122,19 @@ export default function ServicesPage({ params }) {
   }, [filters, allContacts]);
 
   // Get paginated contacts
-// Pagination
+  // Pagination
 
-// Get paginated contacts
-const getPaginatedContacts = () => {
-  const startIndex = (filters.page - 1) * contactsPerPage;
-  const endIndex = startIndex + contactsPerPage;
-  
-  // Ensure at least 12 contacts are displayed if available
-  const contacts = filteredContacts.slice(startIndex, endIndex);
-  return contacts.length < contactsPerPage && filters.page === 1
-    ? filteredContacts.slice(0, contactsPerPage)
-    : contacts;
-};
+  // Get paginated contacts
+  const getPaginatedContacts = () => {
+    const startIndex = (filters.page - 1) * contactsPerPage;
+    const endIndex = startIndex + contactsPerPage;
+
+    // Ensure at least 12 contacts are displayed if available
+    const contacts = filteredContacts.slice(startIndex, endIndex);
+    return contacts.length < contactsPerPage && filters.page === 1
+      ? filteredContacts.slice(0, contactsPerPage)
+      : contacts;
+  };
 
 
   // Handle filter changes
@@ -159,27 +159,27 @@ const getPaginatedContacts = () => {
   };
 
 
-// Prefetch the page for better performance
-useEffect(() => {
-  allContacts.forEach(contact => {
-    const citySlug = toSlug(contact.city.name[locale]);
-    const serviceSlug = toSlug(contact.service.name[locale]);
-    const path = `/${locale}/services/${serviceSlug}/${citySlug}/${contact._id}`;
-    router.prefetch(path);
-  });
-}, [allContacts, locale, router]);
+  // Prefetch the page for better performance
+  useEffect(() => {
+    allContacts.forEach(contact => {
+      const citySlug = toSlug(contact.city.name[locale]);
+      const serviceSlug = toSlug(contact.service.name[locale]);
+      const path = `/${locale}/services/${serviceSlug}/${citySlug}/${contact._id}`;
+      router.prefetch(path);
+    });
+  }, [allContacts, locale, router]);
 
-const handleContactClick = (contactId, cityName, serviceName) => {
-  const citySlug = toSlug(cityName[locale]);
-  const serviceSlug = toSlug(serviceName[locale]);
-  const path = `/${locale}/services/${serviceSlug}/${citySlug}/${contactId}`;
+  const handleContactClick = (contactId, cityName, serviceName) => {
+    const citySlug = toSlug(cityName[locale]);
+    const serviceSlug = toSlug(serviceName[locale]);
+    const path = `/${locale}/services/${serviceSlug}/${citySlug}/${contactId}`;
 
-  // Show loading state
-  setIsLoading(true);
+    // Show loading state
+    setIsLoading(true);
 
-  // Navigate to the page
-  router.push(path);
-};
+    // Navigate to the page
+    router.push(path);
+  };
 
 
 
@@ -312,7 +312,8 @@ const handleContactClick = (contactId, cityName, serviceName) => {
               disabled={filters.page === 1}
               className="page-button prev-next"
             >
-              السابق
+              {messages.pagination.prev}
+            
             </button>
 
             {pageNumbers.map(page => (
@@ -330,7 +331,7 @@ const handleContactClick = (contactId, cityName, serviceName) => {
               disabled={filters.page === totalPages}
               className="page-button prev-next"
             >
-              التالي
+              {messages.pagination.next}
             </button>
           </div>
         )}

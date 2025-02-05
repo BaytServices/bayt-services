@@ -21,6 +21,15 @@ html {
     .banner img {
         width: 400px;
     }
+
+    .contacts-carousel .arrow-right {
+        right: -20px;
+    }
+
+    .contacts-carousel .arrow-left {
+        left: -20px;
+
+    }
 }
 
 /* For small screens (phones, etc.) */
@@ -121,6 +130,10 @@ html {
     .service-page .container>div {
         flex-basis: 100%;
         width: 100%;
+    }
+
+    .contacts-carousel .service-card {
+        min-width: 100%;
     }
 
     .contacts-page .filters {

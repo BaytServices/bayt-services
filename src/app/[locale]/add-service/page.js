@@ -15,8 +15,11 @@ import arMessages from "../../../messages/ar.json";
 import enMessages from "../../../messages/en.json";
 import { getCities } from '../../../lib/api/cities';
 import { getServices } from '../../../lib/api/services';
+import { getWebsiteInfo } from "../../../lib/api/websiteInfo";
+import { use } from 'react';
 
-export default function AddService({ params: { locale } }) {
+export default function AddService({ params }) {
+    const { locale } = use(params)
     const messages = locale === "ar" ? arMessages : enMessages;
     const t = messages.addService;
     const dir = locale === "ar" ? "rtl" : "ltr";
@@ -26,6 +29,7 @@ export default function AddService({ params: { locale } }) {
     const [contact, setContact] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [websiteInfo, setWebsiteInfo] = useState(null);
     const [filters, setFilters] = useState({
         city: '',
         service: ''
@@ -48,6 +52,22 @@ export default function AddService({ params: { locale } }) {
             label: service.name[locale]
         }))
     ];
+
+    useEffect(() => {
+        const fetchWebsiteData = async () => {
+            try {
+                const data = await getWebsiteInfo(); // Fetch the website info from API
+                setWebsiteInfo(data); // Save the data to state
+                setLoading(false); // Set loading to false
+            } catch (err) {
+                setError(err.message); // Handle error
+                setLoading(false); // Set loading to false in case of error
+            }
+        };
+
+        fetchWebsiteData();
+    }, []);
+
 
     // Fetch cities and services on component mount
     useEffect(() => {
@@ -172,7 +192,7 @@ export default function AddService({ params: { locale } }) {
                             </div>
                             <div className="contact-buttons">
                                 <a
-                                    href={`https://wa.me/0558749348`}
+                                    href={`https://wa.me/${websiteInfo.whatsappNumber}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="contact-button whatsapp-button"

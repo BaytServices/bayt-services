@@ -31,9 +31,12 @@ body {
   background-color: #fff;
   overflow-x: hidden;
   user-select: none;
-  -webkit-user-select: none; /* For Safari */
-  -moz-user-select: none;    /* For Firefox */
-  -ms-user-select: none;     /* For Internet Explorer */
+  -webkit-user-select: none;
+  /* For Safari */
+  -moz-user-select: none;
+  /* For Firefox */
+  -ms-user-select: none;
+  /* For Internet Explorer */
 }
 
 [dir="rtl"] {
@@ -1389,7 +1392,8 @@ section#services-section .heading p {
   padding-right: 8px;
   margin-top: 10px;
 }
-.service-page .details-section .social-icons svg{
+
+.service-page .details-section .social-icons svg {
   width: 30px;
   height: 30px;
   color: #0070f3;
@@ -1796,9 +1800,9 @@ footer[dir="rtl"] .footer-contact a::after {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   opacity: 0;
-  width: 0
-  ;
+  width: 0;
   height: 0;
+  transform: scale(0);
 }
 
 /* Title of the Keywords Section */

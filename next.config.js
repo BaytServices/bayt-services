@@ -9,45 +9,37 @@ const nextConfig = {
   },
   async rewrites() {
     return [
+      // Static assets (favicon, icons, manifest, etc.) handling for /ar and /en paths
       {
-        source: '/ar/sitemap.xml',
-        destination: '/api/sitemap?lang=ar', // Pass language as a query param
+        source: '/:lang(ar|en)/favicon-96x96.png',
+        destination: '/favicon-96x96.png',
       },
       {
-        source: '/en/sitemap.xml',
-        destination: '/api/sitemap?lang=en', // Pass language as a query param
+        source: '/:lang(ar|en)/favicon.svg',
+        destination: '/favicon.svg',
       },
       {
-        source: '/ar/robots.txt',  // or any other locale path
-        destination: '/robots.txt', // redirect to the root robots.txt
+        source: '/:lang(ar|en)/favicon.ico',
+        destination: '/favicon.ico',
       },
       {
-        source: '/en/robots.txt',  // or any other locale path
-        destination: '/robots.txt', // redirect to the root robots.txt
+        source: '/:lang(ar|en)/apple-touch-icon.png',
+        destination: '/apple-touch-icon.png',
       },
       {
-        source: '/ar/favicon-new.ico',
-        destination: '/favicon-new.ico', // Map localized path to the root favicon-new
+        source: '/:lang(ar|en)/site.webmanifest',
+        destination: '/site.webmanifest',
+      },
+      // You can add more specific rewrites for other assets if needed, but this should cover the main ones
+
+      // Specific rewrite for robots.txt and sitemap.xml
+      {
+        source: '/:lang(ar|en)/robots.txt',
+        destination: '/robots.txt',
       },
       {
-        source: '/en/favicon-new.ico',
-        destination: '/favicon-new.ico', // Map localized path to the root favicon-new
-      },
-      {
-        source: '/ar/icon.svg',
-        destination: '/icon.svg', // Map localized path to the root SVG icon
-      },
-      {
-        source: '/en/icon.svg',
-        destination: '/icon.svg', // Map localized path to the root SVG icon
-      },
-      {
-        source: '/ar/apple-touch-icon.png',
-        destination: '/apple-touch-icon.png', // Map localized path to the root touch icon
-      },
-      {
-        source: '/en/apple-touch-icon.png',
-        destination: '/apple-touch-icon.png', // Map localized path to the root touch icon
+        source: '/:lang(ar|en)/sitemap.xml',
+        destination: '/api/sitemap?lang=:lang', // Pass language as a query param
       },
     ];
   },
@@ -57,7 +49,7 @@ const nextConfig = {
   },
   webpack(config, { isServer }) {
     if (isServer) {
-      console.log("Server-side webpack build...");
+      console.log('Server-side webpack build...');
     }
     return config;
   },

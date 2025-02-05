@@ -77,11 +77,10 @@ export default function RootLayout({ children, params: { locale } }) {
   return (
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <head>
-        <link rel="icon" href="https://bayt-services.com/favicon-new.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="shortcut icon" href="https://bayt-services.com/favicon-new.ico" type="image/x-icon"/>
-
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
 
         <link rel="canonical" href={`https://bayt-services.com`} />
@@ -137,11 +136,11 @@ export default function RootLayout({ children, params: { locale } }) {
 
       <body itemScope itemType="https://schema.org/WebPage">
         <Navbar locale={locale} />
-        
+
         <main itemScope itemType="https://schema.org/Service">
           {children}
         </main>
-        
+
         <Footer locale={locale} />
       </body>
     </html>

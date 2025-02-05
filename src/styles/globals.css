@@ -1795,6 +1795,10 @@ footer[dir="rtl"] .footer-contact a::after {
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
+  opacity: 0;
+  width: 0
+  ;
+  height: 0;
 }
 
 /* Title of the Keywords Section */

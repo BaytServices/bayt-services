@@ -16,11 +16,11 @@ const nextConfig = {
       },
       {
         source: '/:lang(ar|en)/favicon-mod.svg',
-        destination: '/favicon.svg',
+        destination: '/favicon-mod.svg',
       },
       {
         source: '/:lang(ar|en)/favicon-mod.ico',
-        destination: '/favicon.ico',
+        destination: '/favicon-mod.ico',
       },
       {
         source: '/:lang(ar|en)/apple-touch-icon.png',

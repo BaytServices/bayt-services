@@ -2,5 +2,4 @@ User-agent: *
 Allow: /
 
 
-Sitemap: https://bayt-services.com/ar/sitemap.xml
-Sitemap: https://bayt-services.com/en/sitemap.xml
+Sitemap: https://bayt-services.com/sitemap.xml

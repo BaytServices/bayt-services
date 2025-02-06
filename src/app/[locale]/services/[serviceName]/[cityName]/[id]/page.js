@@ -60,7 +60,12 @@ export async function generateMetadata({ params }) {
             description: meta.description,
             images: contact.images?.length > 0 ? contact.images[0] : contact.service.image,
         },
+        link: {
+            rel: 'canonical',
+            href: `https://bayt-services.com/${locale}/services/${id}`,
+        },
     };
+    
 }
 
 function generateKeywords(contact, locale) {

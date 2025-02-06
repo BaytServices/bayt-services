@@ -39,7 +39,7 @@ const nextConfig = {
       },
       {
         source: '/:lang(ar|en)/sitemap.xml',
-        destination: '/api/sitemap?lang=:lang', // Pass language as a query param
+        destination: '/api/sitemap',
       },
     ];
   },

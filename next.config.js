@@ -15,11 +15,11 @@ const nextConfig = {
         destination: '/favicon-96x96.png',
       },
       {
-        source: '/:lang(ar|en)/favicon.svg',
+        source: '/:lang(ar|en)/favicon-mod.svg',
         destination: '/favicon.svg',
       },
       {
-        source: '/:lang(ar|en)/favicon.ico',
+        source: '/:lang(ar|en)/favicon-mod.ico',
         destination: '/favicon.ico',
       },
       {

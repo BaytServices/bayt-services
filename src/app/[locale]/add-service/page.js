@@ -19,7 +19,7 @@ import { getWebsiteInfo } from "../../../lib/api/websiteInfo";
 import { use } from 'react';
 
 export default function AddService({ params }) {
-    const { locale } = use(params)
+    const { locale } = use(params);
     const messages = locale === "ar" ? arMessages : enMessages;
     const t = messages.addService;
     const dir = locale === "ar" ? "rtl" : "ltr";
@@ -50,26 +50,25 @@ export default function AddService({ params }) {
         ...services.map(service => ({
             value: service._id,
             label: service.name[locale]
-        }))
+        })),
+        { value: 'other', label: locale === "ar" ? "اخرى" : "Other" } // Add "Other" option
     ];
 
     useEffect(() => {
         const fetchWebsiteData = async () => {
             try {
-                const data = await getWebsiteInfo(); // Fetch the website info from API
-                setWebsiteInfo(data); // Save the data to state
-                setLoading(false); // Set loading to false
+                const data = await getWebsiteInfo();
+                setWebsiteInfo(data);
+                setLoading(false);
             } catch (err) {
-                setError(err.message); // Handle error
-                setLoading(false); // Set loading to false in case of error
+                setError(err.message);
+                setLoading(false);
             }
         };
 
         fetchWebsiteData();
     }, []);
 
-
-    // Fetch cities and services on component mount
     useEffect(() => {
         const fetchCitiesAndServices = async () => {
             try {
@@ -87,19 +86,16 @@ export default function AddService({ params }) {
         fetchCitiesAndServices();
     }, []);
 
-    // Handle filter changes
     const handleFilterChange = (type, selectedOption) => {
         setFilters(prev => ({
             ...prev,
             [type]: selectedOption ? selectedOption.value : ''
         }));
-        // Reset contact, error, and submitted state when filters change
         setContact(null);
         setError('');
         setSubmitted(false);
     };
 
-    // Handle form submission to check for existing contact
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!filters.city || !filters.service) {
@@ -110,6 +106,13 @@ export default function AddService({ params }) {
         setLoading(true);
         setError("");
         setSubmitted(true);
+
+        if (filters.service === 'other') {
+            // Handle "Other" service case
+            setContact(null);
+            setLoading(false);
+            return;
+        }
 
         try {
             const response = await fetch(
@@ -130,7 +133,7 @@ export default function AddService({ params }) {
     };
 
     return (
-        <section className="add-service-page ">
+        <section className="add-service-page">
             <div dir={dir} className="container">
                 <h1 className="page-title">{t.title}</h1>
 
@@ -183,7 +186,7 @@ export default function AddService({ params }) {
                                 <p>{t.serviceAlreadyTaken}</p>
                             </div>
                         </div>
-                    ) : (
+                    ) : filters.service === 'other' ? (
                         <div className="contact-card">
                             <h2 className="card-title">{t.addNewService}</h2>
                             <div className="card-content">
@@ -197,9 +200,17 @@ export default function AddService({ params }) {
                                     rel="noopener noreferrer"
                                     className="contact-button whatsapp-button"
                                 >
-                                    {t.addContact}
+                                    {t.contactUs}
                                     <i className="fab fa-whatsapp"></i>
                                 </a>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="contact-card">
+                            <h2 className="card-title">{t.addNewService}</h2>
+                            <div className="card-content">
+                                <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
+                                <p>{t.serviceAvailable}</p>
                             </div>
                         </div>
                     )

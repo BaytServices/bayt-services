@@ -22,6 +22,8 @@ export async function generateMetadata({ params }) {
         robots: 'noindex, nofollow',
     };
 
+
+
     // Use contact description if available, otherwise fallback to service description
     const description = contact.description?.[locale] || contact.service.description[locale];
 
@@ -41,7 +43,7 @@ export async function generateMetadata({ params }) {
             ar: keywords.join(', '),
             en: keywords.join(', '),
         },
-        path: `/${locale}/services/${id}`,
+        path: `/${path}`,
         locale,
     });
 
@@ -51,7 +53,7 @@ export async function generateMetadata({ params }) {
         openGraph: {
             title: meta.title,
             description: meta.description,
-            url: `https://bayt-services.com/${locale}/services/${id}`,
+            url: `https://bayt-services.com/${path}`,
             images: contact.images?.length > 0 ? contact.images : [contact.service.image],
         },
         twitter: {
@@ -62,10 +64,10 @@ export async function generateMetadata({ params }) {
         },
         link: {
             rel: 'canonical',
-            href: `https://bayt-services.com/${locale}/services/${id}`,
+            href: `https://bayt-services.com/${path}`,
         },
     };
-    
+
 }
 
 function generateKeywords(contact, locale) {
@@ -143,6 +145,26 @@ function generateKeywords(contact, locale) {
 
     return uniqueKeywords.slice(0, 20); // Return the top 20 keywords
 }
+// Function to create a dynamic path for the page
+const generatePath = (contact, locale) => {
+    const toSlug = (text = "") => {
+        return text
+            .toString()
+            .trim()
+            .replace(/\s+/g, '-')
+            .replace(/[^\w\u0600-\u06FF-]/g, '')
+            .toLowerCase();
+    };
+
+    const citySlug = toSlug(contact.city.name[locale]);
+    const serviceSlug = toSlug(contact.service.name[locale]);
+
+    return `/${locale}/services/${serviceSlug}/${citySlug}/${contact._id}`;
+};
+
+// Generate the dynamic path
+const path = generatePath(contact, locale);
+
 
 export default async function ContactPage({ params: { locale, id } }) {
     const contact = await fetch(`https://bayt-admin.vercel.app/api/service-contacts/${id}`)
@@ -194,7 +216,7 @@ export default async function ContactPage({ params: { locale, id } }) {
         "serviceArea": contact.city.name[locale],
         "image": images,
         "description": contact.description?.[locale] || contact.service.description[locale],
-        "url": `https://bayt-services.com/${locale}/services/${contact._id}`,
+        "url": `https://bayt-services.com/${path}`,
         "geo": {
             "@type": "GeoCoordinates",
             "latitude": contact.city.latitude,

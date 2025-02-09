@@ -22,8 +22,27 @@ export async function generateMetadata({ params }) {
         robots: 'noindex, nofollow',
     };
 
+    // Function to create a dynamic path for the page
 
 
+    const generatePath = (contact, locale) => {
+        const toSlug = (text = "") => {
+            return text
+                .toString()
+                .trim()
+                .replace(/\s+/g, '-')
+                .replace(/[^\w\u0600-\u06FF-]/g, '')
+                .toLowerCase();
+        };
+
+        const citySlug = toSlug(contact.city.name[locale]);
+        const serviceSlug = toSlug(contact.service.name[locale]);
+
+        return `/${locale}/services/${serviceSlug}/${citySlug}/${contact._id}`;
+    };
+
+    // Generate the dynamic path
+    const path = generatePath(contact, locale);
     // Use contact description if available, otherwise fallback to service description
     const description = contact.description?.[locale] || contact.service.description[locale];
 
@@ -145,25 +164,6 @@ function generateKeywords(contact, locale) {
 
     return uniqueKeywords.slice(0, 20); // Return the top 20 keywords
 }
-// Function to create a dynamic path for the page
-const generatePath = (contact, locale) => {
-    const toSlug = (text = "") => {
-        return text
-            .toString()
-            .trim()
-            .replace(/\s+/g, '-')
-            .replace(/[^\w\u0600-\u06FF-]/g, '')
-            .toLowerCase();
-    };
-
-    const citySlug = toSlug(contact.city.name[locale]);
-    const serviceSlug = toSlug(contact.service.name[locale]);
-
-    return `/${locale}/services/${serviceSlug}/${citySlug}/${contact._id}`;
-};
-
-// Generate the dynamic path
-const path = generatePath(contact, locale);
 
 
 export default async function ContactPage({ params: { locale, id } }) {
@@ -173,7 +173,24 @@ export default async function ContactPage({ params: { locale, id } }) {
 
     const messages = locale === 'ar' ? arMessages : enMessages;
     const dir = locale === 'ar' ? 'rtl' : 'ltr';
+    const generatePath = (contact, locale) => {
+        const toSlug = (text = "") => {
+            return text
+                .toString()
+                .trim()
+                .replace(/\s+/g, '-')
+                .replace(/[^\w\u0600-\u06FF-]/g, '')
+                .toLowerCase();
+        };
 
+        const citySlug = toSlug(contact.city.name[locale]);
+        const serviceSlug = toSlug(contact.service.name[locale]);
+
+        return `/${locale}/services/${serviceSlug}/${citySlug}/${contact._id}`;
+    };
+
+    // Generate the dynamic path
+    const path = generatePath(contact, locale);
     if (!contact) {
         return (
             <div className="error-container">

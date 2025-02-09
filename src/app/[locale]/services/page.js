@@ -209,133 +209,139 @@ export default function ServicesPage({ params }) {
   ];
 
   return (
-    <div className="contacts-page">
-      <div className="container" dir={dir}>
-        <div className="filters">
-          <div className="filter-item">
-            <Select
-              options={cityOptions}
-              value={cityOptions.find(option => option.value === filters.city)}
-              onChange={(selectedOption) => handleFilterChange('city', selectedOption)}
-              placeholder={messages.services.selectCity}
-              isClearable
-              className='select'
-            />
-          </div>
-          <h1>{messages.services.contactsTitle}</h1>
-          <div className="filter-item">
-            <Select
-              options={serviceOptions}
-              value={serviceOptions.find(option => option.value === filters.service)}
-              onChange={(selectedOption) => handleFilterChange('service', selectedOption)}
-              placeholder={messages.services.selectService}
-              isClearable
-              className='select'
-            />
-          </div>
-        </div>
-        <div className="grid-services">
-          {isLoading ? (
-            <div className="spinner-container">
-              <div className="spinner"></div>
+    <>
+      <head>
+        <link rel="canonical" href={`https://bayt-services.com/ar/services`} />
+        <link rel="alternate" hreflang="ar" href="https://bayt-services.com/ar/services" />
+        <link rel="alternate" hreflang="en" href="https://bayt-services.com/en/services" />
+    </head>
+      <div className="contacts-page">
+        <div className="container" dir={dir}>
+          <div className="filters">
+            <div className="filter-item">
+              <Select
+                options={cityOptions}
+                value={cityOptions.find(option => option.value === filters.city)}
+                onChange={(selectedOption) => handleFilterChange('city', selectedOption)}
+                placeholder={messages.services.selectCity}
+                isClearable
+                className='select'
+              />
             </div>
-          ) : getPaginatedContacts().length > 0 ? (
-            getPaginatedContacts().map((contact) => (
-              <div
-                key={contact._id}
-                className="service-card"
-                onClick={() => {
-                  console.log("City Name:", contact.city.name[locale]);
-                  console.log("Service Name:", contact.service.name[locale]);
-                  handleContactClick(contact._id, contact.city.name, contact.service.name);
-                }}
-
-              >
-                <div className="image-container">
-                  <img
-                    src={getDisplayImage(contact)}
-                    alt={contact.name[locale]}
-                    className="service-image"
-                  />
-                </div>
-                <div className="service-content">
-                  <h3 className="service-title">{contact.name[locale]}</h3>
-                  <div className="service-info">
-                    <span className="location-badge">
-                      <FontAwesomeIcon icon={faLocationDot} />
-                      {contact.city.name[locale]}
-                    </span>
-                    <span className="service-type">
-                      <FontAwesomeIcon icon={faTags} />
-                      {contact.service.name[locale]}
-                    </span>
-                  </div>
-
-                  <div className='stars'>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                  </div>
-                  <div className="contact-buttons">
-                    <a
-                      href={`https://wa.me/${contact.whatsapp}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="contact-button whatsapp-button"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      {messages.services.whatsapp}
-                      <i className="fa-brands fa-whatsapp"></i>
-                    </a>
-                    <a
-                      href={`tel:${contact.phone}`}
-                      className="contact-button call-button"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      {messages.services.call}
-                      <FontAwesomeIcon icon={faPhone} />
-                    </a>
-                  </div>
-                </div>
+            <h1>{messages.services.contactsTitle}</h1>
+            <div className="filter-item">
+              <Select
+                options={serviceOptions}
+                value={serviceOptions.find(option => option.value === filters.service)}
+                onChange={(selectedOption) => handleFilterChange('service', selectedOption)}
+                placeholder={messages.services.selectService}
+                isClearable
+                className='select'
+              />
+            </div>
+          </div>
+          <div className="grid-services">
+            {isLoading ? (
+              <div className="spinner-container">
+                <div className="spinner"></div>
               </div>
-            ))
-          ) : (
-            <p className='no-result'>{messages.services.noResults}</p>
+            ) : getPaginatedContacts().length > 0 ? (
+              getPaginatedContacts().map((contact) => (
+                <div
+                  key={contact._id}
+                  className="service-card"
+                  onClick={() => {
+                    console.log("City Name:", contact.city.name[locale]);
+                    console.log("Service Name:", contact.service.name[locale]);
+                    handleContactClick(contact._id, contact.city.name, contact.service.name);
+                  }}
+
+                >
+                  <div className="image-container">
+                    <img
+                      src={getDisplayImage(contact)}
+                      alt={contact.name[locale]}
+                      className="service-image"
+                    />
+                  </div>
+                  <div className="service-content">
+                    <h3 className="service-title">{contact.name[locale]}</h3>
+                    <div className="service-info">
+                      <span className="location-badge">
+                        <FontAwesomeIcon icon={faLocationDot} />
+                        {contact.city.name[locale]}
+                      </span>
+                      <span className="service-type">
+                        <FontAwesomeIcon icon={faTags} />
+                        {contact.service.name[locale]}
+                      </span>
+                    </div>
+
+                    <div className='stars'>
+                      <i className="fas fa-star"></i>
+                      <i className="fas fa-star"></i>
+                      <i className="fas fa-star"></i>
+                      <i className="fas fa-star"></i>
+                      <i className="fas fa-star"></i>
+                    </div>
+                    <div className="contact-buttons">
+                      <a
+                        href={`https://wa.me/${contact.whatsapp}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="contact-button whatsapp-button"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        {messages.services.whatsapp}
+                        <i className="fa-brands fa-whatsapp"></i>
+                      </a>
+                      <a
+                        href={`tel:${contact.phone}`}
+                        className="contact-button call-button"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        {messages.services.call}
+                        <FontAwesomeIcon icon={faPhone} />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p className='no-result'>{messages.services.noResults}</p>
+            )}
+          </div>
+          {totalPages > 1 && (
+            <div className="pagination">
+              <button
+                onClick={() => setFilters(prev => ({ ...prev, page: prev.page - 1 }))}
+                disabled={filters.page === 1}
+                className="page-button prev-next"
+              >
+                {messages.pagination.prev}
+
+              </button>
+
+              {pageNumbers.map(page => (
+                <button
+                  key={page}
+                  onClick={() => setFilters(prev => ({ ...prev, page }))}
+                  className={`page-button ${page === filters.page ? 'active' : ''}`}
+                >
+                  {page}
+                </button>
+              ))}
+
+              <button
+                onClick={() => setFilters(prev => ({ ...prev, page: prev.page + 1 }))}
+                disabled={filters.page === totalPages}
+                className="page-button prev-next"
+              >
+                {messages.pagination.next}
+              </button>
+            </div>
           )}
         </div>
-        {totalPages > 1 && (
-          <div className="pagination">
-            <button
-              onClick={() => setFilters(prev => ({ ...prev, page: prev.page - 1 }))}
-              disabled={filters.page === 1}
-              className="page-button prev-next"
-            >
-              {messages.pagination.prev}
-            
-            </button>
-
-            {pageNumbers.map(page => (
-              <button
-                key={page}
-                onClick={() => setFilters(prev => ({ ...prev, page }))}
-                className={`page-button ${page === filters.page ? 'active' : ''}`}
-              >
-                {page}
-              </button>
-            ))}
-
-            <button
-              onClick={() => setFilters(prev => ({ ...prev, page: prev.page + 1 }))}
-              disabled={filters.page === totalPages}
-              className="page-button prev-next"
-            >
-              {messages.pagination.next}
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
+      </div></>
   );
 }

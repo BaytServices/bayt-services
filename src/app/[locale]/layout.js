@@ -83,10 +83,6 @@ export default function RootLayout({ children, params: { locale } }) {
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
 
-        <link rel="canonical" href={`https://bayt-services.com/ar`} />
-        <link rel="alternate" hreflang="ar" href="https://bayt-services.com/ar" />
-        <link rel="alternate" hreflang="en" href="https://bayt-services.com/en" />
-        <link rel="alternate" hreflang="x-default" href="https://bayt-services.com" />
 
         {/* Structured Data */}
         <script type="application/ld+json">

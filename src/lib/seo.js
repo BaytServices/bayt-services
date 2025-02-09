@@ -26,7 +26,7 @@ export function generateSeoMetadata({
     description: description[locale],
     keywords: keywords[locale],
     alternates: {
-      canonical: `${baseUrl}/${locale}${path}`,
+      canonical: `${baseUrl}/ar${path}`,
       languages: {
         'ar-SA': `${baseUrl}/ar${path}`,
         'en-US': `${baseUrl}/en${path}`,
@@ -35,7 +35,7 @@ export function generateSeoMetadata({
     openGraph: {
       title: title[locale],
       description: description[locale],
-      url: `${baseUrl}/${locale}${path}`,
+      url: `${baseUrl}/${locale}/${path}`,
       siteName,
       locale: locale === 'ar' ? 'ar_SA' : 'en_US',
       type: 'website',

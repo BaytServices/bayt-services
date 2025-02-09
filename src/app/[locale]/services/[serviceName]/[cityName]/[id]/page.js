@@ -38,11 +38,13 @@ export async function generateMetadata({ params }) {
         const citySlug = toSlug(contact.city.name[locale]);
         const serviceSlug = toSlug(contact.service.name[locale]);
 
-        return `/${locale}/services/${serviceSlug}/${citySlug}/${contact._id}`;
+        return `services/${serviceSlug}/${citySlug}/${contact._id}`;
     };
 
     // Generate the dynamic path
     const path = generatePath(contact, locale);
+    console.log(path);
+    
     // Use contact description if available, otherwise fallback to service description
     const description = contact.description?.[locale] || contact.service.description[locale];
 
@@ -63,7 +65,7 @@ export async function generateMetadata({ params }) {
             en: keywords.join(', '),
         },
         path: `/${path}`,
-        locale,
+      
     });
 
     // Add Open Graph & Twitter Metadata

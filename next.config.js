@@ -30,8 +30,6 @@ const nextConfig = {
         source: '/:lang(ar|en)/site.webmanifest',
         destination: '/site.webmanifest',
       },
-      // You can add more specific rewrites for other assets if needed, but this should cover the main ones
-
       // Specific rewrite for robots.txt and sitemap.xml
       {
         source: '/:lang(ar|en)/robots.txt',
@@ -40,6 +38,28 @@ const nextConfig = {
       {
         source: '/:lang(ar|en)/sitemap.xml',
         destination: '/api/sitemap',
+      },
+    ];
+  },
+  async redirects() {
+    return [
+      // Redirect root `/` to `/ar` (default language)
+      {
+        source: '/',
+        destination: '/ar',
+        permanent: true, // 301 Redirect
+      },
+      // Handle cases where `/ar/` redirects to `/ar`
+      {
+        source: '/ar/',
+        destination: '/ar',
+        permanent: true,
+      },
+      // Handle cases where `/en/` redirects to `/en`
+      {
+        source: '/en/',
+        destination: '/en',
+        permanent: true,
       },
     ];
   },

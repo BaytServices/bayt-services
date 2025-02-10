@@ -8,7 +8,7 @@ import Banner from '../../../../../../components/shared/Banner';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaYoutube, FaTiktok, FaSnapchat, FaPinterest } from 'react-icons/fa';
 
 export async function generateMetadata({ params }) {
-    const { locale, id } = params;
+    const { locale, id } = await params;
     const contact = await fetch(`https://bayt-admin.vercel.app/api/service-contacts/${id}`)
         .then((res) => res.json())
         .catch((error) => {
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }) {
     // Generate the dynamic path
     const path = generatePath(contact, locale);
     console.log(path);
-    
+
     // Use contact description if available, otherwise fallback to service description
     const description = contact.description?.[locale] || contact.service.description[locale];
 
@@ -61,11 +61,12 @@ export async function generateMetadata({ params }) {
             en: description,
         },
         keywords: {
-            ar: keywords.join(', '),
-            en: keywords.join(', '),
+            ar: keywords,
+            en: keywords,
         },
-        path: `/${path}`,
-      
+        path: path,
+        locale: locale, // Add this line
+        images: contact.images?.length > 0 ? contact.images : [contact.service.image] // Add images if needed
     });
 
     // Add Open Graph & Twitter Metadata
@@ -168,7 +169,8 @@ function generateKeywords(contact, locale) {
 }
 
 
-export default async function ContactPage({ params: { locale, id } }) {
+export default async function ContactPage({ params }) {
+    const { locale, id } = await params;
     const contact = await fetch(`https://bayt-admin.vercel.app/api/service-contacts/${id}`)
         .then((res) => res.json())
         .catch(() => null);

@@ -115,19 +115,21 @@ export default function RootLayout({ children, params: { locale } }) {
         </script>
 
         {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-4RQMN4VKKL" />
+
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2NVEJ03D9W" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-4RQMN4VKKL', {
-                page_path: window.location.pathname,
-              });
-            `,
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2NVEJ03D9W', {
+        page_path: window.location.pathname,
+      });
+    `,
           }}
         />
+
       </head>
 
       <body itemScope itemType="https://schema.org/WebPage">

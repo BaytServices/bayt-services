@@ -21,3 +21,4 @@ yarn-error.log*
 # IDE or Editor files (e.g., VS Code settings)
 .vscode/
 .idea/
+.vercel

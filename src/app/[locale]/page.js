@@ -28,7 +28,7 @@ export default function Home({ params: paramsPromise }) {
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        const response = await fetch('https://bayt-admin.vercel.app/api/service-contacts'); // Use a serverless function or API route
+        const response = await fetch('https://bayt-admin.vercel.app/api/service-contacts?active=true'); // Use a serverless function or API route
         const data = await response.json();
         setAllContacts(data.contacts);
       } catch (error) {

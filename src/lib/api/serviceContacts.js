@@ -1,7 +1,8 @@
 export async function getServiceContacts({ cityId, serviceId, page = 1, limit = 10 }) {
   const params = new URLSearchParams({
-    page: page.toString(),
-    limit: limit.toString(),
+    active: 'true', // Add active=true here
+    ...(page && { page: page.toString() }),
+    ...(limit && { limit: limit.toString() }),
     ...(cityId && { city: cityId }),
     ...(serviceId && { service: serviceId })
   });

@@ -180,11 +180,14 @@ export default async function ContactPage({ params }) {
 
 
 
-    if (!contact || contact.active || contact.service.active == false) {
-        return (<div className='error-page'>
-            <h1>404 - Page Not Found</h1>
-        </div>)
-    }
+  // ✅ Correct - shows error when contact is NOT active
+if (!contact || contact.active === false || contact.service?.active === false) {
+    return (
+        <div className='error-page'>
+            <h1>عذرا - الخدمة غير مفعلة حاليا</h1>
+        </div>
+    );
+}
     const messages = locale === 'ar' ? arMessages : enMessages;
     const dir = locale === 'ar' ? 'rtl' : 'ltr';
 

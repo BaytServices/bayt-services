@@ -3,7 +3,7 @@ const BASE_URL = 'https://bayt-services.com';
 
 async function fetchAllServiceContacts() {
     try {
-        const response = await fetch('https://bayt-admin.vercel.app/api/service-contacts');
+        const response = await fetch('https://bayt-admin.vercel.app/api/service-contacts?active=true');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

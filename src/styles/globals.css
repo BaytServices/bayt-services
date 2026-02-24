@@ -1871,3 +1871,10 @@ footer[dir="rtl"] .footer-contact a::after {
     padding: 6px 10px;
   }
 }
+
+.error-page {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

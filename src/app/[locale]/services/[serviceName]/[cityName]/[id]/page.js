@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import { notFound } from 'next/navigation';
 
 import arMessages from '../../../../../../messages/ar.json';
 import enMessages from '../../../../../../messages/en.json';
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }) {
             return null;
         });
 
-    if (!contact) return {
+    if (!contact || contact.active === false) return {
         title: 'Page Not Found',
         description: 'The requested service page was not found.',
         robots: 'noindex, nofollow',
@@ -175,8 +176,18 @@ export default async function ContactPage({ params }) {
         .then((res) => res.json())
         .catch(() => null);
 
+    console.log(contact.active);
+
+
+
+    if (!contact || contact.active || contact.service.active == false) {
+        return (<div className='error-page'>
+            <h1>404 - Page Not Found</h1>
+        </div>)
+    }
     const messages = locale === 'ar' ? arMessages : enMessages;
     const dir = locale === 'ar' ? 'rtl' : 'ltr';
+
     const generatePath = (contact, locale) => {
         const toSlug = (text = "") => {
             return text
@@ -195,7 +206,7 @@ export default async function ContactPage({ params }) {
 
     // Generate the dynamic path
     const path = generatePath(contact, locale);
-    if (!contact) {
+    if (!contact || contact.active === false) {
         return (
             <div className="error-container">
                 <h2 className="error-title">{messages.errors.notFound}</h2>
